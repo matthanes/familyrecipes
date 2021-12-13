@@ -3,7 +3,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        inconsolata: ["'Inconsolata', monospace"],
+        montserrat: ["'Montserrat', sans-serif"],
+      },
+    },
   },
   plugins: [],
 }

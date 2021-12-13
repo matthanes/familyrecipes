@@ -1,3 +1,29 @@
 @tailwind base;
+@layer base {
+    body {
+        @apply bg-gray-50 text-zinc-700 font-montserrat font-normal leading-7;
+    }
+
+    p {
+        @apply mb-4 max-w-[40em];
+    }
+
+    img {
+        @apply w-full block object-cover;
+    }
+
+    h1 {
+      @apply text-5xl mb-6 font-inconsolata font-normal capitalize ;
+    }
+    h2 {
+      @apply text-4xl mb-6 font-inconsolata font-normal capitalize;
+    }
+    h3 {
+      @apply text-3xl mb-6 font-inconsolata font-normal capitalize;
+    }
+    h4 {
+        @apply text-2xl mb-6 font-inconsolata font-normal capitalize;
+      }
+}
 @tailwind components;
 @tailwind utilities;

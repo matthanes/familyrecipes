@@ -35,7 +35,7 @@ const Navbar = () => {
         >
           <Link
             to="/"
-            className="block text-center text-2xl capitalize text-gray-600 tracking-wide py-4 px-0 border-solid border-t-[1px] 
+            className="block text-center text-2xl capitalize tracking-wide py-4 px-0 border-solid border-t-[1px] 
             border-gray-500 transition-all ease-in-out duration-75 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:rounded-lg"
             activeClassName="bg-indigo-500 text-white rounded-lg"
             onClick={() => setShow(false)}
@@ -44,7 +44,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/recipes"
-            className="block text-center text-2xl capitalize text-gray-600 tracking-wide py-4 px-0 border-solid border-t-[1px] 
+            className="block text-center text-2xl capitalize tracking-wide py-4 px-0 border-solid border-t-[1px] 
             border-gray-500 transition-all ease-in-out duration-75 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:rounded-lg"
             activeClassName="bg-indigo-500 text-white rounded-lg"
             onClick={() => setShow(false)}
@@ -53,7 +53,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/tags"
-            className="block text-center text-2xl capitalize text-gray-600 tracking-wide py-4 px-0 border-solid border-t-[1px] 
+            className="block text-center text-2xl capitalize tracking-wide py-4 px-0 border-solid border-t-[1px] 
             border-gray-500 transition-all ease-in-out duration-75 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:rounded-lg"
             activeClassName="bg-indigo-500 text-white rounded-lg"
             onClick={() => setShow(false)}

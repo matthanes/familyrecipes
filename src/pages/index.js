@@ -15,9 +15,9 @@ const Home = () => {
             placeholder="tracedSVG"
             layout="fullWidth"
           />
-          <div className="hero-container absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/70 rounded-xl">
-            <div className="hero-text text-white text-center">
-              <h1 className="lg:text-6xl line mb-4">Family Recipes</h1>
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/70 rounded-xl">
+            <div className="text-white text-center">
+              <h1 className="text-5xl lg:text-7xl line mb-4">Family Recipes</h1>
               <h4 className="text-2xl">No annoying blog posts or ads</h4>
             </div>
           </div>

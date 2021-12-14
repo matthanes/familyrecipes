@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
     body {
-        @apply bg-gray-50 text-zinc-700 font-montserrat font-normal leading-7;
+        @apply bg-gray-50 text-zinc-700 font-montserrat font-normal leading-7; /*dark:bg-zinc-800 dark:text-slate-100;*/
     }
 
     p {

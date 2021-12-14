@@ -27,7 +27,7 @@ const AllRecipes = () => {
   const recipes = data.allContentfulRecipe.nodes
 
   return (
-    <section className="recipes-container">
+    <section className="recipes-container grid gap-y-8 gap-x-4 lg:grid-cols-[200px_1fr] lg:gap-[1rem]">
       <TagsList />
       <RecipesList recipes={recipes} />
     </section>

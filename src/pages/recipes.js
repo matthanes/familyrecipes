@@ -5,7 +5,7 @@ import AllRecipes from "../components/AllRecipes"
 const Recipes = () => {
   return (
     <Layout>
-      <main className="page">
+      <main>
         <AllRecipes />
       </main>
     </Layout>

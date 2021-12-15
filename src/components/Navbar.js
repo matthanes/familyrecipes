@@ -20,7 +20,7 @@ const Navbar = () => {
             />
           </Link>
           <button
-            className="py-1 px-3  lg:hidden"
+            className="py-1 px-3 lg:hidden"
             onClick={() => setShow(!show)}
           >
             <FiAlignJustify className="text-2xl " />
@@ -29,14 +29,14 @@ const Navbar = () => {
         <div
           className={
             show
-              ? "h-52 overflow-hidden flex flex-col transition-all ease-in-out duration-75 lg:h-auto lg:flex-row lg:items-center lg:w-full"
-              : "h-0 overflow-hidden flex flex-col transition-all ease-in-out duration-75 lg:h-auto lg:flex-row lg:items-center lg:w-full lg:justify-end"
+              ? "h-52 overflow-hidden flex flex-col transition-all ease-in-out duration-300 lg:h-auto lg:flex-row lg:items-center lg:w-full"
+              : "h-0 overflow-hidden flex flex-col transition-all ease-in-out duration-300 lg:h-auto lg:flex-row lg:items-center lg:w-full lg:justify-end"
           }
         >
           <Link
             to="/"
             className="block text-center text-2xl font-medium capitalize tracking-wide py-4 px-0 border-solid border-t-[1px] 
-            border-gray-500 transition-all ease-in-out duration-75 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:rounded-lg"
+            border-gray-500 transition-all ease-in-out duration-300 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:rounded-lg"
             activeClassName="bg-indigo-500 text-white rounded-lg"
             onClick={() => setShow(false)}
           >
@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link
             to="/recipes"
             className="block text-center text-2xl font-medium capitalize tracking-wide py-4 px-0 border-solid border-t-[1px] 
-            border-gray-500 transition-all ease-in-out duration-75 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:rounded-lg"
+            border-gray-500 transition-all ease-in-out duration-300 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:rounded-lg"
             activeClassName="bg-indigo-500 text-white rounded-lg"
             onClick={() => setShow(false)}
           >
@@ -54,7 +54,7 @@ const Navbar = () => {
           <Link
             to="/tags"
             className="block text-center text-2xl font-medium capitalize tracking-wide py-4 px-0 border-solid border-t-[1px] 
-            border-gray-500 transition-all ease-in-out duration-75 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:hover:rounded-lg"
+            border-gray-500 transition-all ease-in-out duration-300 lg:px-2 lg:py-1 lg:border-t-0 lg:mr-4 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white lg:rounded-lg"
             activeClassName="bg-indigo-500 text-white rounded-lg"
             onClick={() => setShow(false)}
           >

@@ -15,11 +15,13 @@ const RecipesList = ({ recipes = [] }) => {
           <Link to={`/${slug}`} className="recipe block" key={id}>
             <GatsbyImage
               image={pathToImage}
-              className="recipe-img h-60 rounded-lg sm:h-40 lg:h-36"
+              className="recipe-img h-60 rounded-lg"
               alt={title}
             />
-            <h5 className="mb-0 mt-1 leading-none text-slate-100 font-semibold xl:text-xl">{title}</h5>
-            <p className="mb-0 mt-2 leading-none text-zinc-700 text-sm">
+            <h5 className="mb-0 mt-1 leading-none text-zinc-700 dark:text-slate-200 font-semibold xl:text-xl">
+              {title}
+            </h5>
+            <p className="mb-0 mt-2 leading-none text-zinc-700 dark:text-slate-200">
               Prep : {prepTime} min | Cook Time : {cookTime} min
             </p>
           </Link>

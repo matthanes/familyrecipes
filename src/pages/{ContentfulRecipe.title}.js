@@ -20,86 +20,88 @@ const RecipeTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <main className="page">
-        <div className="recipe-page">
-          <section className="recipe-hero">
-            <GatsbyImage
-              image={pathToImage}
-              alt={title}
-              className="about-img"
-            />
-            <article className="recipe-info">
-              <h2>{title}</h2>
-              <p>{description}</p>
-              <div className="recipe-icons">
-                <article>
-                  <BsClock />
-                  <h5>Prep Time</h5>
-                  <p>{prepTime} min</p>
-                </article>
-                <article>
-                  <BsClockHistory />
-                  <h5>Cook Time</h5>
-                  <p>{cookTime} min</p>
-                </article>
-                <article>
-                  <BsPeople />
-                  <h5>Servings</h5>
-                  <p>{servings}</p>
-                </article>
-              </div>
-              <p className="recipe-tags">
-                Tags :
-                {tags.map((tag, index) => {
-                  const tagSlug = slugify(tag, { lower: true })
-                  return (
-                    <Link to={`/tags/${tagSlug}`} key={index}>
-                      {tag}
-                    </Link>
-                  )
-                })}
-              </p>
-            </article>
-          </section>
-          <section className="recipe-content">
-            <article>
-              <h4>Instructions</h4>
-              {instructions.map((item, index) => {
+      <main>
+        <section className="recipe-hero grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
+          <GatsbyImage
+            image={pathToImage}
+            alt={title}
+            className="h-96 rounded-lg"
+          />
+          <article className="recipe-info">
+            <h2>{title}</h2>
+            <p className="text-justify">{description}</p>
+            <div className="recipe-icons grid grid-cols-3 gap-4 my-8 mx-0 text-center justify-center">
+              <article>
+                <BsClock className="text-2xl mx-auto mb-2" />
+                <h5 className="mb-0 text-md font-semibold">Prep Time</h5>
+                <p className="mb-0 text-md">{prepTime} min</p>
+              </article>
+              <article>
+                <BsClockHistory className="text-2xl mx-auto mb-2" />
+                <h5 className="mb-0 text-md font-semibold">Cook Time</h5>
+                <p className="mb-0 text-md">{cookTime} min</p>
+              </article>
+              <article>
+                <BsPeople className="text-2xl mx-auto mb-2" />
+                <h5 className="mb-0 text-md font-semibold">Servings</h5>
+                <p className="mb-0 text-md">{servings}</p>
+              </article>
+            </div>
+            <p className="recipe-tags flex items-center flex-wrap font-semibold">
+              Tags:
+              {tags.map((tag, index) => {
+                const tagSlug = slugify(tag, { lower: true })
                 return (
-                  <div key={index} className="single-instruction">
-                    <header>
-                      <p>Step {index + 1}</p>
-                      <div></div>
-                    </header>
-                    <p>{item}</p>
-                  </div>
+                  <Link
+                    className="bg-indigo-500 rounded-lg text-white py-[.05rem] m-1 px-2 capitalize first:ml-4"
+                    to={`/tags/${tagSlug}`}
+                    key={index}
+                  >
+                    {tag}
+                  </Link>
                 )
               })}
-            </article>
-            <article className="second-column">
-              <div>
-                <h4>Ingredients</h4>
-                {ingredients.map((item, index) => {
-                  return (
-                    <p key={index} className="single-ingredient">
-                      {item}
-                    </p>
-                  )
-                })}
-              </div>
-              <div>
-                <h4>Tools</h4>
-                {tools.map((item, index) => {
-                  return (
-                    <p key={index} className="single-tool">
-                      {item}
-                    </p>
-                  )
-                })}
-              </div>
-            </article>
-          </section>
-        </div>
+            </p>
+          </article>
+        </section>
+        <section className="recipe-content py-12 px-0 grid gap-y-8 gap-x-20 lg:grid-cols-[2fr_1fr]">
+          <article>
+            <h4>Instructions</h4>
+            {instructions.map((item, index) => {
+              return (
+                <div key={index} className="single-instruction">
+                  <header className="grid grid-cols-[auto_1fr] gap-6 items-center">
+                    <p className="uppercase font-semibold text-indigo-600 dark:text-indigo-400 mb-0  tracking-wider">Step {index + 1}</p>
+                    <div className="h-[1px] bg-gray-500"></div>
+                  </header>
+                  <p>{item}</p>
+                </div>
+              )
+            })}
+          </article>
+          <article className="second-column grid gap-y-8">
+            <div>
+              <h4>Ingredients</h4>
+              {ingredients.map((item, index) => {
+                return (
+                  <p key={index} className="single-ingredient border-b-[1px] border-solid border-gray-500 pb-3">
+                    {item}
+                  </p>
+                )
+              })}
+            </div>
+            <div>
+              <h4>Tools</h4>
+              {tools.map((item, index) => {
+                return (
+                  <p key={index} className="single-tool border-b-[1px] border-solid border-gray-500 pb-3 text-indigo-600 dark:text-indigo-400 capitalize">
+                    {item}
+                  </p>
+                )
+              })}
+            </div>
+          </article>
+        </section>
       </main>
     </Layout>
   )

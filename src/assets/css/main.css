@@ -1,29 +1,33 @@
 @tailwind base;
 @layer base {
-    body {
-        @apply bg-gray-50 text-zinc-700 font-montserrat font-normal leading-7; /*dark:bg-zinc-800 dark:text-slate-100;*/
-    }
+  body {
+    @apply bg-gray-50 text-zinc-700 font-montserrat font-normal leading-7 dark:bg-zinc-800 dark:text-slate-200;
+  }
 
-    p {
-        @apply mb-4 max-w-[40em];
-    }
+  main {
+    @apply min-h-[calc(100vh-10rem)] w-[90vw] max-w-7xl my-0 mx-auto;
+  }
 
-    img {
-        @apply w-full block object-cover;
-    }
+  p {
+    @apply mb-4;
+  }
 
-    h1 {
-      @apply text-5xl mb-6 font-inconsolata font-normal capitalize ;
-    }
-    h2 {
-      @apply text-4xl mb-6 font-inconsolata font-normal capitalize;
-    }
-    h3 {
-      @apply text-3xl mb-6 font-inconsolata font-normal capitalize;
-    }
-    h4 {
-        @apply text-2xl mb-6 font-inconsolata font-normal capitalize;
-      }
+  img {
+    @apply w-full block object-cover;
+  }
+
+  h1 {
+    @apply text-5xl mb-6 font-inconsolata font-normal capitalize;
+  }
+  h2 {
+    @apply text-4xl mb-6 font-inconsolata font-normal capitalize;
+  }
+  h3 {
+    @apply text-3xl mb-6 font-inconsolata font-normal capitalize;
+  }
+  h4 {
+    @apply text-2xl mb-6 font-inconsolata font-normal capitalize;
+  }
 }
 @tailwind components;
 @tailwind utilities;

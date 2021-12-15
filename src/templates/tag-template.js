@@ -8,9 +8,9 @@ const TagTemplate = ({ data, pageContext }) => {
   console.log(recipes)
   return (
     <Layout>
-      <main className="page">
+      <main>
         <h2>{pageContext.tag}</h2>
-        <div className="tag-recipes">
+        <div>
           <RecipesList recipes={recipes} />
         </div>
       </main>

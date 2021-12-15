@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Layout>
       <main>
-        <header className="hero h-[40vh] relative mb-8">
+        <header className="h-[40vh] relative mb-8">
           <StaticImage
             src="../assets/images/main.jpg"
             alt="flour and cracked eggs"

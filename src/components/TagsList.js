@@ -29,9 +29,9 @@ const TagsList = () => {
   //   console.log(recipes)
   const newTags = setupTags(recipes)
   return (
-    <div className="tag-container order-1 mb-4 lg:order-none flex flex-col">
+    <div className="order-1 mb-4 lg:order-none flex flex-col">
       <h4 className="mb-2 font-bold text-center lg:text-left">Tags</h4>
-      <div className="tags-list grid grid-cols-[1fr_1fr_1fr] text-center lg:text-left lg:grid-cols-1">
+      <div className="grid grid-cols-[1fr_1fr_1fr] text-center lg:text-left lg:grid-cols-1">
         {newTags.map((tag, index) => {
           const [text, value] = tag
           const tagSlug = slugify(text, { lower: true })

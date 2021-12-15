@@ -23,16 +23,16 @@ const RecipeTemplate = ({ data }) => {
   return (
     <Layout>
       <main>
-        <section className="recipe-hero grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
+        <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
           <GatsbyImage
             image={pathToImage}
             alt={title}
             className="h-96 rounded-lg"
           />
-          <article className="recipe-info">
+          <article className="">
             <h2>{title}</h2>
             <p className="text-justify">{description}</p>
-            <div className="recipe-icons grid grid-cols-3 gap-4 my-8 mx-0 text-center justify-center">
+            <div className="grid grid-cols-3 gap-4 my-8 mx-0 text-center justify-center">
               <article>
                 <MdOutlineTimer className="text-2xl mx-auto mb-2" />
                 <h5 className="mb-0 text-md font-semibold">Prep Time</h5>
@@ -49,7 +49,7 @@ const RecipeTemplate = ({ data }) => {
                 <p className="mb-0 text-md">{servings}</p>
               </article>
             </div>
-            <p className="recipe-tags flex items-center flex-wrap font-semibold">
+            <p className="flex items-center flex-wrap font-semibold">
               Tags:
               {tags.map((tag, index) => {
                 const tagSlug = slugify(tag, { lower: true })
@@ -66,12 +66,12 @@ const RecipeTemplate = ({ data }) => {
             </p>
           </article>
         </section>
-        <section className="recipe-content py-12 px-0 grid gap-y-8 gap-x-20 lg:grid-cols-[2fr_1fr]">
+        <section className="py-12 px-0 grid gap-y-8 gap-x-20 lg:grid-cols-[2fr_1fr]">
           <article>
             <h4>Instructions</h4>
             {instructions.map((item, index) => {
               return (
-                <div key={index} className="single-instruction">
+                <div key={index}>
                   <header className="grid grid-cols-[auto_1fr] gap-6 items-center">
                     <p className="uppercase font-semibold text-indigo-600 dark:text-indigo-400 mb-0  tracking-wider">Step {index + 1}</p>
                     <div className="h-[1px] bg-gray-500"></div>
@@ -81,12 +81,12 @@ const RecipeTemplate = ({ data }) => {
               )
             })}
           </article>
-          <article className="second-column grid gap-y-8">
+          <article className="grid gap-y-8">
             <div>
               <h4>Ingredients</h4>
               {ingredients.map((item, index) => {
                 return (
-                  <p key={index} className="single-ingredient border-b-[1px] border-solid border-gray-500 pb-3">
+                  <p key={index} className="border-b-[1px] border-solid border-gray-500 pb-3">
                     {item}
                   </p>
                 )
@@ -96,7 +96,7 @@ const RecipeTemplate = ({ data }) => {
               <h4>Tools</h4>
               {tools.map((item, index) => {
                 return (
-                  <p key={index} className="single-tool border-b-[1px] border-solid border-gray-500 pb-3 text-indigo-600 dark:text-indigo-400 capitalize">
+                  <p key={index} className="border-b-[1px] border-solid border-gray-500 pb-3 text-indigo-600 dark:text-indigo-400 capitalize">
                     {item}
                   </p>
                 )

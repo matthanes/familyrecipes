@@ -12,10 +12,10 @@ const RecipesList = ({ recipes = [] }) => {
         const slug = slugify(title, { lower: true })
 
         return (
-          <Link to={`/${slug}`} className="recipe block" key={id}>
+          <Link to={`/${slug}`} className="block" key={id}>
             <GatsbyImage
               image={pathToImage}
-              className="recipe-img h-60 rounded-lg"
+              className="h-60 rounded-lg"
               alt={title}
             />
             <h5 className="mb-0 mt-1 leading-none text-zinc-700 dark:text-slate-200 font-semibold xl:text-xl">

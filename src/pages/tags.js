@@ -9,7 +9,7 @@ const Tags = ({ data }) => {
   return (
     <Layout>
       <main>
-        <section className="tags-page grid gap-8 pb-12 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="grid gap-8 pb-12 sm:grid-cols-2 lg:grid-cols-3">
           {newTags.map((tag, index) => {
             const [text, value] = tag
             const tagSlug = slugify(text, { lower: true })
@@ -17,7 +17,7 @@ const Tags = ({ data }) => {
               <Link
                 to={`/tags/${tagSlug}`}
                 key={index}
-                className="tag bg-zinc-700 rounded-lg text-center text-white transition-all ease-in-out duration-300 py-3 px-0 hover:bg-indigo-500"
+                className="bg-zinc-700 rounded-lg text-center text-white transition-all ease-in-out duration-300 py-3 px-0 hover:bg-indigo-500"
               >
                 <h5 className="mb-0 font-semibold">{text}</h5>
                 <p className="mb-0">{value} recipes</p>

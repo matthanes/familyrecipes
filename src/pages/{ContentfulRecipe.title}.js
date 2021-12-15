@@ -2,7 +2,9 @@ import React from "react"
 import Layout from "../components/Layout"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { BsClockHistory, BsClock, BsPeople } from "react-icons/bs"
+import { BsPieChart } from "react-icons/bs"
+import { GiSandsOfTime } from "react-icons/gi"
+import {MdOutlineTimer} from "react-icons/md"
 import slugify from "slugify"
 
 const RecipeTemplate = ({ data }) => {
@@ -32,17 +34,17 @@ const RecipeTemplate = ({ data }) => {
             <p className="text-justify">{description}</p>
             <div className="recipe-icons grid grid-cols-3 gap-4 my-8 mx-0 text-center justify-center">
               <article>
-                <BsClock className="text-2xl mx-auto mb-2" />
+                <MdOutlineTimer className="text-2xl mx-auto mb-2" />
                 <h5 className="mb-0 text-md font-semibold">Prep Time</h5>
                 <p className="mb-0 text-md">{prepTime} min</p>
               </article>
               <article>
-                <BsClockHistory className="text-2xl mx-auto mb-2" />
+                <GiSandsOfTime className="text-2xl mx-auto mb-2" />
                 <h5 className="mb-0 text-md font-semibold">Cook Time</h5>
                 <p className="mb-0 text-md">{cookTime} min</p>
               </article>
               <article>
-                <BsPeople className="text-2xl mx-auto mb-2" />
+                <BsPieChart className="text-2xl mx-auto mb-2" />
                 <h5 className="mb-0 text-md font-semibold">Servings</h5>
                 <p className="mb-0 text-md">{servings}</p>
               </article>

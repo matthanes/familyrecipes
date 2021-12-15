@@ -7,14 +7,14 @@ const TagTemplate = ({ data, pageContext }) => {
   const recipes = data.allContentfulRecipe.nodes
   console.log(recipes)
   return (
-    <Layout>
+    <>
       <main>
         <h2>{pageContext.tag}</h2>
         <div>
           <RecipesList recipes={recipes} />
         </div>
       </main>
-    </Layout>
+    </>
   )
 }
 

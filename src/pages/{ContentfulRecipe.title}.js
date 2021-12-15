@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { BsPieChart } from "react-icons/bs"
 import { GiSandsOfTime } from "react-icons/gi"
-import {MdOutlineTimer} from "react-icons/md"
+import { MdOutlineTimer } from "react-icons/md"
 import slugify from "slugify"
 
 const RecipeTemplate = ({ data }) => {
@@ -21,7 +21,7 @@ const RecipeTemplate = ({ data }) => {
   const { tags, instructions, ingredients, tools } = content
 
   return (
-    <Layout>
+    <>
       <main>
         <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
           <GatsbyImage
@@ -73,7 +73,9 @@ const RecipeTemplate = ({ data }) => {
               return (
                 <div key={index}>
                   <header className="grid grid-cols-[auto_1fr] gap-6 items-center">
-                    <p className="uppercase font-semibold text-indigo-600 dark:text-indigo-400 mb-0  tracking-wider">Step {index + 1}</p>
+                    <p className="uppercase font-semibold text-indigo-600 dark:text-indigo-400 mb-0  tracking-wider">
+                      Step {index + 1}
+                    </p>
                     <div className="h-[1px] bg-gray-500"></div>
                   </header>
                   <p>{item}</p>
@@ -86,7 +88,10 @@ const RecipeTemplate = ({ data }) => {
               <h4>Ingredients</h4>
               {ingredients.map((item, index) => {
                 return (
-                  <p key={index} className="border-b-[1px] border-solid border-gray-500 pb-3">
+                  <p
+                    key={index}
+                    className="border-b-[1px] border-solid border-gray-500 pb-3"
+                  >
                     {item}
                   </p>
                 )
@@ -96,7 +101,10 @@ const RecipeTemplate = ({ data }) => {
               <h4>Tools</h4>
               {tools.map((item, index) => {
                 return (
-                  <p key={index} className="border-b-[1px] border-solid border-gray-500 pb-3 text-indigo-600 dark:text-indigo-400 capitalize">
+                  <p
+                    key={index}
+                    className="border-b-[1px] border-solid border-gray-500 pb-3 text-indigo-600 dark:text-indigo-400 capitalize"
+                  >
                     {item}
                   </p>
                 )
@@ -105,7 +113,7 @@ const RecipeTemplate = ({ data }) => {
           </article>
         </section>
       </main>
-    </Layout>
+    </>
   )
 }
 

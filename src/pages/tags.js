@@ -7,7 +7,7 @@ import slugify from "slugify"
 const Tags = ({ data }) => {
   const newTags = setupTags(data.allContentfulRecipe.nodes)
   return (
-    <Layout>
+    <>
       <main>
         <section className="grid gap-8 pb-12 sm:grid-cols-2 lg:grid-cols-3">
           {newTags.map((tag, index) => {
@@ -26,7 +26,7 @@ const Tags = ({ data }) => {
           })}
         </section>
       </main>
-    </Layout>
+    </>
   )
 }
 

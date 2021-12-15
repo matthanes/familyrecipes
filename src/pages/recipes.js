@@ -4,11 +4,11 @@ import AllRecipes from "../components/AllRecipes"
 
 const Recipes = () => {
   return (
-    <Layout>
+    <>
       <main>
         <AllRecipes />
       </main>
-    </Layout>
+    </>
   )
 }
 

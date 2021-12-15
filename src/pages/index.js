@@ -5,7 +5,7 @@ import FeaturedRecipes from "../components/FeaturedRecipes"
 
 const Home = () => {
   return (
-    <Layout>
+    <>
       <main>
         <header className="h-[40vh] relative mb-8">
           <StaticImage
@@ -25,7 +25,7 @@ const Home = () => {
         <h3 className="lg:ml-[calc(200px+1rem)]">Featured Recipes</h3>
         <FeaturedRecipes />
       </main>
-    </Layout>
+    </>
   )
 }
 

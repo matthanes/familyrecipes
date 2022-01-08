@@ -4,7 +4,15 @@
 
 2.  **Clone the repo**
 
-3.  **Open the source code and start editing!**
+3.  **Setup the Environment**
+    You will need to setup an .env.development file in the root with a Contentful spaceID and access token. 
+
+    ```shell
+    CONTENTFUL_SPACE_ID=space_id_goes_here
+    CONTENTFUL_ACCESS_TOKEN=access_token_goes_here
+    ```
+
+4.  **Open the source code and start editing!**
 
     Navigate your terminal to the repo's folder and run these commands:
 
@@ -12,7 +20,7 @@
     npm install && npm run develop
     ```
 
-4.  **Open the source code and start editing!**
+5.  **Open the source code and start editing!**
 
     Your site is now running at `http://localhost:8000`!
 

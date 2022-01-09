@@ -29,14 +29,14 @@
 6.  **Below is a sample of the deploy script I'm using in Github actions**
 
     ```shell
-    name: Deploy
+name: Deploy
 
-    on:
-    push:
+on:
+  push:
     branches: [ main ]
 
-    jobs:
-    build:
+jobs:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -49,7 +49,7 @@
       - name: Build
         run: |
           npm install
-          npm run build
+          npm run build-prefix
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
@@ -59,5 +59,10 @@
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - run: aws s3 sync ./public s3://yours3bucketname
+      - run: aws s3 sync ./public s3://matthanesprojects.com/recipes
+
+      - run: aws cloudfront create-invalidation --distribution-id=$CLOUDFRONT_DISTRIBUTION_ID --paths '/recipes/*'
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+
     ```

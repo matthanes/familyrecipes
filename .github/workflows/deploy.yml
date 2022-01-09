@@ -15,11 +15,13 @@ jobs:
         with:
           node-version: 14
           
-      - run: npm install
-      - run: npm run build
-        env: 
-          CONTENTFUL_SPACE_ID=${{secrets.CONTENTFUL_SPACE_ID}}
-          CONTENTFUL_ACCESS_TOKEN=${{secrets.CONTENTFUL_ACCESS_TOKEN}}
+      - name: Build
+        run: |
+          npm install
+          npm run build
+        env:
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
       - uses: aws-actions/configure-aws-credentials@v1
         with:

@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 
 module.exports = {
+  pathPrefix: `/recipes`,
   siteMetadata: {
     title: "Family Recipes",
     description:

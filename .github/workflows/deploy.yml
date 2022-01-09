@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: |
           npm install
-          npm run build
+          npm run build-prefix
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}

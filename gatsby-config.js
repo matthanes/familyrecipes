@@ -50,6 +50,18 @@ module.exports = {
         // Add any options here
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `family Recipes`,
+        short_name: `Family Recipes`,
+        start_url: `/`,
+        background_color: `#000000`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: `src/assets/images/favicon.svg`,
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,

@@ -5,6 +5,7 @@ import { BsPieChart } from "react-icons/bs"
 import { GiSandsOfTime } from "react-icons/gi"
 import { MdOutlineTimer } from "react-icons/md"
 import slugify from "slugify"
+import Layout from "../components/Layout"
 
 const RecipeTemplate = ({ data }) => {
   const {
@@ -20,8 +21,7 @@ const RecipeTemplate = ({ data }) => {
   const { tags, instructions, ingredients, tools } = content
 
   return (
-    <>
-      <main>
+    <Layout>
         <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
           <GatsbyImage
             image={pathToImage}
@@ -111,8 +111,7 @@ const RecipeTemplate = ({ data }) => {
             </div>
           </article>
         </section>
-      </main>
-    </>
+    </Layout>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from "react"
-
+import Layout from "../components/Layout"
 import { graphql, Link } from "gatsby"
 import setupTags from "../utils/setupTags"
 import slugify from "slugify"
@@ -7,8 +7,7 @@ import slugify from "slugify"
 const Tags = ({ data }) => {
   const newTags = setupTags(data.allContentfulRecipe.nodes)
   return (
-    <>
-      <main>
+    <Layout>
         <section className="grid gap-8 pb-12 sm:grid-cols-2 lg:grid-cols-3">
           {newTags.map((tag, index) => {
             const [text, value] = tag
@@ -25,8 +24,7 @@ const Tags = ({ data }) => {
             )
           })}
         </section>
-      </main>
-    </>
+    </Layout>
   )
 }
 

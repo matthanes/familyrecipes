@@ -1,19 +1,18 @@
 import React from "react"
 import { graphql } from "gatsby"
 import RecipesList from "../components/RecipesList"
+import Layout from "../components/Layout"
 
 const TagTemplate = ({ data, pageContext }) => {
   const recipes = data.allContentfulRecipe.nodes
   console.log(recipes)
   return (
-    <>
-      <main>
-        <h2>{pageContext.tag}</h2>
-        <div>
-          <RecipesList recipes={recipes} />
-        </div>
-      </main>
-    </>
+    <Layout>
+      <h2>{pageContext.tag}</h2>
+      <div>
+        <RecipesList recipes={recipes} />
+      </div>
+    </Layout>
   )
 }
 

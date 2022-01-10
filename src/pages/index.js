@@ -1,12 +1,11 @@
 import React from "react"
-
+import Layout from "../components/Layout"
 import { StaticImage } from "gatsby-plugin-image"
 import FeaturedRecipes from "../components/FeaturedRecipes"
 
 const Home = () => {
   return (
-    <>
-      <main>
+    <Layout>
         <header className="h-[30vh] md:h-[40vh] relative mb-8">
           <StaticImage
             src="../assets/images/main.jpg"
@@ -24,8 +23,7 @@ const Home = () => {
         </header>
         <h3 className="lg:ml-[calc(200px+1rem)]">Featured Recipes</h3>
         <FeaturedRecipes />
-      </main>
-    </>
+    </Layout>
   )
 }
 

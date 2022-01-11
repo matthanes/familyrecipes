@@ -6,7 +6,11 @@ import logodark from "../assets/images/logodark.svg"
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  const mq = false;
+  if (typeof window !== 'undefined') {
+    mq = window.matchMedia('(prefers-color-scheme: dark)');
+  }
+  
 
   return (
     <nav className="flex items-center justify-center lg:h-24">

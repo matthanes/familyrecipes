@@ -28,7 +28,7 @@
 
 6.  **Below is a sample of the deploy script I'm using in Github actions**
 
-    ```shell
+```shell
 name: Deploy
 
 on:
@@ -64,5 +64,4 @@ jobs:
       - run: aws cloudfront create-invalidation --distribution-id=$CLOUDFRONT_DISTRIBUTION_ID --paths '/recipes/*'
         env:
           CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
-
-    ```
+```

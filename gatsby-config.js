@@ -1,29 +1,85 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+
+var slugify = require('slugify')
 
 module.exports = {
   pathPrefix: `/recipes`,
   siteMetadata: {
-    title: "Family Recipes",
+    title: 'Family Recipes',
     description:
-      "A collection of family recipes without the annoying blog posts and ads",
-    author: "Matt Hanes",
+      'A collection of family recipes without the annoying blog posts and ads',
+    author: 'Matt Hanes',
+    siteUrl: 'https://matthanesprojects.com/recipes',
   },
 
   plugins: [
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            title: 'Family Recipes',
+            output: 'rss.xml',
+            query: `
+            {
+              allContentfulRecipe(sort: { order: ASC, fields: title }) {
+                nodes {
+                  id
+                  prepTime
+                  cookTime
+                  title
+                  content {
+                    tags
+                  }
+                  image {
+                    gatsbyImageData(layout: CONSTRAINED, placeholder: TRACED_SVG)
+                  }
+                }
+              }
+            }
+          `,
+            serialize: ({ query: { site, allContentfulRecipe } }) => {
+              return allContentfulRecipe.nodes.map(node => {
+                return Object.assign({}, node, {
+                  url: `${site.siteMetadata.siteUrl}/${slugify(node.title, {
+                    lower: true,
+                  })}`,
+                  guid: `${site.siteMetadata.siteUrl}/${slugify(node.title, {
+                    lower: true,
+                  })}`,
+                })
+              })
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-webfonts`,
       options: {
         fonts: {
           google2: [
             {
-              family: "Inconsolata",
-              axes: "wght@400..700",
+              family: 'Inconsolata',
+              axes: 'wght@400..700',
             },
             {
-              family: "Montserrat",
-              axes: "wght@400",
+              family: 'Montserrat',
+              axes: 'wght@400',
             },
           ],
         },
@@ -31,7 +87,7 @@ module.exports = {
     },
 
     {
-      resolve: "gatsby-source-contentful",
+      resolve: 'gatsby-source-contentful',
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -70,5 +126,3 @@ module.exports = {
     `gatsby-plugin-no-index`,
   ],
 }
-
-

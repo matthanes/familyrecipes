@@ -11,7 +11,7 @@ const Home = () => {
             src="../assets/images/main.jpg"
             alt="flour and cracked eggs"
             className="h-full rounded-xl"
-            placeholder="tracedSVG"
+            placeholder="blurred"
             layout="fullWidth"
           />
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/70 rounded-xl">

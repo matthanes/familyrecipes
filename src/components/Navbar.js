@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { FiAlignJustify } from "react-icons/fi"
 import logo from "../assets/images/logo.svg"
 import logodark from "../assets/images/logodark.svg"
+import { StaticImage } from "gatsby-plugin-image"
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
@@ -17,12 +18,12 @@ const Navbar = () => {
       <div className="w-[90vw] max-w-7xl lg:flex lg:items-center">
         <div className="h-24 flex w-full justify-between items-center lg:p-0 lg:mr-8 lg:h-auto">
           <Link to="/">
-            <img
-              className="w-52 ml-[-6px] mb-[-9px]"
-              src={logodark} //show different image depending on color scheme preference
-              fetchpriority="high"
-              alt="Family Recipes"
-            />
+          <StaticImage
+            src="../assets/images/logodark.svg"
+            alt="Family Recipes logo"
+            className="w-52 ml-[-6px] mb-[-9px]"
+            placeholder="blurred"
+          />
           </Link>
           <button
             className="py-1 px-3 lg:hidden"

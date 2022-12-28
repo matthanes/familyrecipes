@@ -5,6 +5,7 @@ require('dotenv').config({
 var slugify = require('slugify')
 
 module.exports = {
+  trailingSlash: `always`, // this is the default, but I'm including it here for clarity
   pathPrefix: `/recipes`,
   siteMetadata: {
     title: 'Family Recipes',

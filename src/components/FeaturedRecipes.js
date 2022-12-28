@@ -5,10 +5,7 @@ import { graphql, useStaticQuery } from "gatsby"
 
 const query = graphql`
 {
-  allContentfulRecipe(
-    filter: { featured: { eq: true } }
-    sort: { fields: title, order: ASC }
-  ) {
+  allContentfulRecipe(filter: {featured: {eq: true}}, sort: {title: ASC}) {
     nodes {
       id
       title

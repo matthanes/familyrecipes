@@ -19,7 +19,7 @@ const Navbar = () => {
           <Link to="/">
             <img
               className="w-52 ml-[-6px] mb-[-9px]"
-              src={darklogo} //show different image depending on color scheme preference
+              src={logodark} //show different image depending on color scheme preference
               fetchpriority="high"
               alt="Family Recipes"
             />

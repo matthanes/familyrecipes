@@ -18,17 +18,14 @@ const TagTemplate = ({ data, pageContext }) => {
 
 export const query = graphql`
   query getRecipeByTag($tag: String) {
-    allContentfulRecipe(
-      sort: { fields: title, order: ASC }
-      filter: { content: { tags: { eq: $tag } } }
-    ) {
+    allContentfulRecipe(sort: {title: ASC}, filter: {content: {tags: {eq: $tag}}}) {
       nodes {
         title
         id
         cookTime
         prepTime
         image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: TRACED_SVG)
+          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
         }
       }
     }

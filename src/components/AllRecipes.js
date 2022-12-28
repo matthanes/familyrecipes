@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from "gatsby"
 
 const query = graphql`
   {
-    allContentfulRecipe(sort: { order: ASC, fields: title }) {
+    allContentfulRecipe(sort: {title: ASC}) {
       nodes {
         id
         prepTime
@@ -15,7 +15,7 @@ const query = graphql`
           tags
         }
         image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: TRACED_SVG)
+          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
         }
       }
     }

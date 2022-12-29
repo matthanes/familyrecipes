@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { FiAlignJustify } from 'react-icons/fi'
-import { StaticImage } from 'gatsby-plugin-image'
 
 const Navbar = () => {
   const [show, setShow] = useState(false)

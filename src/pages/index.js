@@ -9,7 +9,7 @@ const Home = () => {
       <header className="relative mb-8 h-[30vh] md:h-[40vh]">
         <StaticImage
           src="../assets/images/main.jpg"
-          alt="flour and cracked eggs"
+          alt="Dinner table with plates of food"
           className="h-full rounded-xl"
           placeholder="blurred"
           layout="fullWidth"

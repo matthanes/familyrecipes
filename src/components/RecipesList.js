@@ -4,7 +4,6 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import slugify from 'slugify'
 
 const RecipesList = ({ recipes = [] }) => {
-  console.log(recipes)
   return (
     <div className="recipes-list grid gap-y-8 gap-x-4 pb-12 sm:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1fr_1fr]">
       {recipes.length > 0 ? (

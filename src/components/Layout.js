@@ -1,10 +1,10 @@
-import React from "react"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
-import { motion } from "framer-motion"
+import React from 'react'
+import Navbar from './Navbar'
+import Footer from './Footer'
+import { motion } from 'framer-motion'
 
-import "normalize.css"
-import "../assets/css/main.css"
+import 'normalize.css'
+import '../assets/css/main.css'
 
 const Layout = ({ children }) => {
   return (
@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
         animate={{ opacity: 1, x: 0 }}
         // exit={{ opacity: 0, x: -200 }}
         transition={{
-          type: "spring",
+          type: 'spring',
           mass: 0.35,
           stiffness: 75,
           duration: 0.15,

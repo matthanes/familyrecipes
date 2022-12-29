@@ -1,7 +1,7 @@
-import React from "react"
-import { graphql } from "gatsby"
-import RecipesList from "../components/RecipesList"
-import Layout from "../components/Layout"
+import React from 'react'
+import { graphql } from 'gatsby'
+import RecipesList from '../components/RecipesList'
+import Layout from '../components/Layout'
 
 const TagTemplate = ({ data, pageContext }) => {
   const recipes = data.allContentfulRecipe.nodes
@@ -18,7 +18,10 @@ const TagTemplate = ({ data, pageContext }) => {
 
 export const query = graphql`
   query getRecipeByTag($tag: String) {
-    allContentfulRecipe(sort: {title: ASC}, filter: {content: {tags: {eq: $tag}}}) {
+    allContentfulRecipe(
+      sort: { title: ASC }
+      filter: { content: { tags: { eq: $tag } } }
+    ) {
       nodes {
         title
         id

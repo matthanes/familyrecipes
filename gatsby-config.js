@@ -37,7 +37,7 @@ module.exports = {
             output: 'rss.xml',
             query: `
             {
-              allContentfulRecipe(sort: { order: ASC, fields: title }) {
+              allContentfulRecipe(sort: {title: ASC}) {
                 nodes {
                   id
                   prepTime

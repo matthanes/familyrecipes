@@ -1,11 +1,15 @@
 @tailwind base;
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply bg-gray-50 text-zinc-700 font-montserrat font-normal leading-7 dark:bg-zinc-800 dark:text-slate-200;
+    @apply bg-gray-50 font-montserrat font-normal leading-7 text-zinc-700 dark:bg-zinc-800 dark:text-slate-200;
   }
 
   main {
-    @apply min-h-[calc(100vh-10rem)] w-[90vw] max-w-7xl my-0 mx-auto;
+    @apply my-0 mx-auto min-h-[calc(100vh-10rem)] w-[90vw] max-w-7xl;
   }
 
   p {
@@ -13,20 +17,20 @@
   }
 
   img {
-    @apply w-full block object-cover;
+    @apply block w-full object-cover;
   }
 
   h1 {
-    @apply text-5xl mb-6 font-inconsolata font-normal capitalize;
+    @apply mb-6 font-inconsolata text-5xl font-normal capitalize;
   }
   h2 {
-    @apply text-4xl mb-6 font-inconsolata font-normal capitalize;
+    @apply mb-6 font-inconsolata text-4xl font-normal capitalize;
   }
   h3 {
-    @apply text-3xl mb-6 font-inconsolata font-normal capitalize;
+    @apply mb-6 font-inconsolata text-3xl font-normal capitalize;
   }
   h4 {
-    @apply text-2xl mb-6 font-inconsolata font-normal capitalize;
+    @apply mb-6 font-inconsolata text-2xl font-normal capitalize;
   }
 }
 @tailwind components;

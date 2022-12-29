@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { FiAlignJustify } from "react-icons/fi"
-import logo from "../assets/images/logo.svg"
-import logodark from "../assets/images/logodark.svg"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
-  const [mq, setMq] = useState(false)
-
-  useEffect(() => {
-    setMq(window.matchMedia("(prefers-color-scheme: dark)"))
-  }, [])
   
   return (
     <nav className="flex items-center justify-center lg:h-24">

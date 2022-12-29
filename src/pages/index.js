@@ -21,7 +21,6 @@ const Home = () => {
             </div>
           </div>
         </header>
-        <h3 className="lg:ml-[calc(200px+1rem)]">Featured Recipes</h3>
         <FeaturedRecipes />
     </Layout>
   )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
-import { FiAlignJustify } from 'react-icons/fi'
+import Hamburger from './Hamburger'
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
@@ -15,19 +15,8 @@ const Navbar = () => {
               src="https://matthanesprojects.com/recipes/static/logo-e1ae3d018c63c4e3953de658c9c0fd01.svg"
               alt="Family Recipes logo"
             />
-            {/* <StaticImage
-            src="../assets/images/logodark.svg"
-            alt="Family Recipes logo"
-            className="w-52 ml-[-6px] mb-[-9px]"
-            placeholder="blurred"
-          /> */}
           </Link>
-          <button
-            className="py-1 px-3 lg:hidden"
-            onClick={() => setShow(!show)}
-          >
-            <FiAlignJustify className="text-2xl " />
-          </button>
+          <Hamburger handleClick={() => setShow(!show)} active={show} />
         </div>
         <div
           className={

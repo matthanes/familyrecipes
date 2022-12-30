@@ -6,12 +6,11 @@ const Navbar = () => {
   const [show, setShow] = useState(false)
 
   return (
-    <nav className="flex items-center justify-center lg:h-24">
+    <nav className="flex items-center justify-center h-20 lg:h-24">
       <div className="w-[90vw] max-w-7xl lg:flex lg:items-center">
-        <div className="flex h-24 w-full items-center justify-between lg:mr-8 lg:h-auto lg:p-0">
+        <div className="flex h-20 w-full items-center justify-between lg:mr-8 lg:h-auto lg:p-0">
           <Link to="/">
             <img
-              className="ml-[-6px] mb-[-9px] w-52"
               src="https://matthanesprojects.com/recipes/static/logo-e1ae3d018c63c4e3953de658c9c0fd01.svg"
               alt="Family Recipes logo"
             />

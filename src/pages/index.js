@@ -6,7 +6,7 @@ import FeaturedRecipes from '../components/FeaturedRecipes'
 const Home = () => {
   return (
     <Layout>
-      <header className="relative mb-8 h-[30vh] md:h-[40vh]">
+      <header className="relative mb-4 lg:mb-8 h-[30vh] md:h-[40vh]">
         <StaticImage
           src="../assets/images/main.jpg"
           alt="Dinner table with plates of food"

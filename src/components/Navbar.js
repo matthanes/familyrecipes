@@ -6,7 +6,7 @@ const Navbar = () => {
   const [show, setShow] = useState(false)
 
   return (
-    <nav className="flex items-center justify-center h-20 lg:h-24">
+    <nav className="flex items-center justify-center lg:h-24">
       <div className="w-[90vw] max-w-7xl lg:flex lg:items-center">
         <div className="flex h-20 w-full items-center justify-between lg:mr-8 lg:h-auto lg:p-0">
           <Link to="/">

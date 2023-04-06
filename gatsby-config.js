@@ -126,5 +126,6 @@ module.exports = {
     `gatsby-plugin-dark-mode`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-no-index`,
+    `gatsby-plugin-meta-redirect`
   ],
 }

@@ -2,7 +2,14 @@ const path = require("path")
 const slugify = require("slugify")
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  createRedirect({
+    fromPath: "/about-us",
+    toPath: "/tags",
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
 
   const result = await graphql(`
     query getRecipes {

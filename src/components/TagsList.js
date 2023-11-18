@@ -3,20 +3,23 @@ import React from 'react'
 import setupTags from '../utils/setupTags'
 import slugify from 'slugify'
 import { graphql, useStaticQuery } from 'gatsby'
+import flattenTags from '../utils/flattenTags'
 
 const query = graphql`
   {
     allContentfulRecipe(sort: { title: ASC }) {
       nodes {
-        id
-        prepTime
-        cookTime
-        title
         content {
           tags
         }
-        image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+      }
+    }
+    directus {
+      recipes {
+        tags {
+          tags_id {
+            tag_name
+          }
         }
       }
     }
@@ -26,8 +29,13 @@ const query = graphql`
 const TagsList = () => {
   const data = useStaticQuery(query)
   const recipes = data.allContentfulRecipe.nodes
-  //   console.log(recipes)
-  const newTags = setupTags(recipes)
+  const directusRecipes = data.directus.recipes
+  // restructure directusRecipes to match recipes
+  directusRecipes.forEach(recipe => {
+    recipe.content = {}
+    recipe.content.tags = flattenTags(recipe.tags)
+  })
+  const newTags = setupTags([...recipes, ...directusRecipes])
   return (
     <div className="order-1 mb-4 flex flex-col lg:order-none">
       <h4 className="mb-2 text-center font-bold lg:text-left">Tags</h4>

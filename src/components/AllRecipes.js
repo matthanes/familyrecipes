@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import TagsList from './TagsList'
 import RecipesList from './RecipesList'
 import SearchBar from './SearchBar'
@@ -20,24 +20,53 @@ const query = graphql`
         }
       }
     }
+    directus {
+      recipes {
+        image {
+          id
+          imageFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
+          }
+        }
+        title
+        cook_time
+        description
+        featured
+        id
+        ingredients
+        instructions
+        prep_time
+        servings
+        status
+        tools
+        tags {
+          tags_id {
+            tag_name
+          }
+        }
+      }
+    }
   }
 `
-
 const AllRecipes = () => {
   const data = useStaticQuery(query)
-  const recipes = data.allContentfulRecipe.nodes
-
+  const recipes = data?.allContentfulRecipe?.nodes
+  const directusRecipes = data?.directus?.recipes
+  const allRecipes = useMemo(() => [...recipes, ...directusRecipes], [recipes, directusRecipes])
   const [searchTerm, setSearchTerm] = useState('')
-  const [searchResults, setSearchResults] = useState([])
+  const [searchResults, setSearchResults] = useState(allRecipes)
   const handleChange = event => {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event?.target?.value)
   }
+  const allRecipesRef = useRef(allRecipes)
   useEffect(() => {
-    const results = recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const results = allRecipesRef.current?.filter(recipe =>
+      recipe?.title?.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setSearchResults(results)
-  }, [searchTerm, recipes])
+  }, [searchTerm, allRecipesRef])
 
   return (
     <>
@@ -53,7 +82,7 @@ const AllRecipes = () => {
         ) : (
           <div>
             <h3>Featured Recipes</h3>
-            <RecipesList recipes={recipes} />
+            <RecipesList recipes={allRecipes} />
           </div>
         )}
       </section>

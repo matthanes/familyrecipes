@@ -6,49 +6,58 @@ import { GiSandsOfTime } from 'react-icons/gi'
 import { MdOutlineTimer } from 'react-icons/md'
 import slugify from 'slugify'
 import Layout from '../components/Layout'
+import flattenTags from '../utils/flattenTags'
 
 const RecipeTemplate = ({ data }) => {
   const {
+    directus: { recipes },
+  } = data
+  let {
     title,
-    cookTime,
-    content,
-    prepTime,
+    cook_time: cookTime,
+    description,
+    prep_time: prepTime,
     servings,
-    description: { description },
     image,
-  } = data.contentfulRecipe
-  const pathToImage = getImage(image)
-  const { tags, instructions, ingredients, tools } = content
+    ingredients,
+    instructions,
+    tags,
+    tools,
+  } = recipes[0]
+  
+  // extract image
+  const pathToImage = getImage(image.imageFile)
+
+  // flatten tags
+  tags = flattenTags(tags)
 
   return (
     <Layout>
       <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
-        {pathToImage && (
-          <GatsbyImage
-            image={pathToImage}
-            alt={title}
-            className="h-96 rounded-lg"
-          />
-        )}
-        <article className="">
+        {pathToImage && <GatsbyImage
+          image={pathToImage}
+          alt={title}
+          className="h-96 rounded-lg"
+        />}
+        <div className="">
           <h2>{title}</h2>
           <p className="text-justify">{description}</p>
-          <div className="my-8 mx-0 grid grid-cols-3 justify-center gap-4 text-center">
-            <article>
+          <div className="mx-0 my-8 grid grid-cols-3 justify-center gap-4 text-center">
+            <div>
               <MdOutlineTimer className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Prep Time</h5>
               <p className="text-md mb-0">{prepTime} min</p>
-            </article>
-            <article>
+            </div>
+            <div>
               <GiSandsOfTime className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Cook Time</h5>
               <p className="text-md mb-0">{cookTime} min</p>
-            </article>
-            <article>
+            </div>
+            <div>
               <BsPieChart className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Servings</h5>
               <p className="text-md mb-0">{servings}</p>
-            </article>
+            </div>
           </div>
           <p className="flex flex-wrap items-center font-semibold">
             Tags:
@@ -56,7 +65,7 @@ const RecipeTemplate = ({ data }) => {
               const tagSlug = slugify(tag, { lower: true })
               return (
                 <Link
-                  className="m-1 rounded-lg bg-indigo-500 py-[.05rem] px-2 capitalize text-white first:ml-4"
+                  className="m-1 rounded-lg bg-indigo-500 px-2 py-[.05rem] capitalize text-white first:ml-4"
                   to={`/tags/${tagSlug}`}
                   key={index}
                 >
@@ -65,10 +74,10 @@ const RecipeTemplate = ({ data }) => {
               )
             })}
           </p>
-        </article>
+        </div>
       </section>
-      <section className="grid gap-y-8 gap-x-20 py-12 px-0 lg:grid-cols-[2fr_1fr]">
-        <article>
+      <section className="grid gap-x-20 gap-y-8 px-0 py-12 lg:grid-cols-[2fr_1fr]">
+        <div>
           <h4>Instructions</h4>
           {instructions.map((item, index) => {
             return (
@@ -79,12 +88,12 @@ const RecipeTemplate = ({ data }) => {
                   </p>
                   <div className="h-[1px] bg-gray-500"></div>
                 </header>
-                <p>{item}</p>
+                <p>{item.step}</p>
               </div>
             )
           })}
-        </article>
-        <article className="grid gap-y-8">
+        </div>
+        <div className="grid gap-y-8">
           <div>
             <h4>Ingredients</h4>
             {ingredients.map((item, index) => {
@@ -93,7 +102,7 @@ const RecipeTemplate = ({ data }) => {
                   key={index}
                   className="border-b-[1px] border-solid border-gray-500 pb-3"
                 >
-                  {item}
+                  {item.amount} {item.measurement} {item.ingredient}
                 </p>
               )
             })}
@@ -106,12 +115,12 @@ const RecipeTemplate = ({ data }) => {
                   key={index}
                   className="border-b-[1px] border-solid border-gray-500 pb-3 capitalize text-indigo-600 dark:text-indigo-400"
                 >
-                  {item}
+                  {item.tool}
                 </p>
               )
             })}
           </div>
-        </article>
+        </div>
       </section>
     </Layout>
   )
@@ -119,22 +128,32 @@ const RecipeTemplate = ({ data }) => {
 
 export const query = graphql`
   query getSingleRecipe($title: String) {
-    contentfulRecipe(title: { eq: $title }) {
-      title
-      cookTime
-      prepTime
-      servings
-      image {
-        gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
-      }
-      content {
+    directus {
+      recipes(filter: { title: { _eq: $title } }) {
+        title
+        cook_time
+        description
+        featured
+        id
         ingredients
         instructions
-        tags
+        prep_time
+        servings
+        status
         tools
-      }
-      description {
-        description
+        tags {
+          tags_id {
+            tag_name
+          }
+        }
+        image {
+          id
+          imageFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
+          }
+        }
       }
     }
   }

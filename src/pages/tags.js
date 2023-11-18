@@ -2,10 +2,19 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { graphql, Link } from 'gatsby'
 import setupTags from '../utils/setupTags'
+import flattenTags from '../utils/flattenTags'
 import slugify from 'slugify'
 
 const Tags = ({ data }) => {
-  const newTags = setupTags(data.allContentfulRecipe.nodes)
+  data.directus.recipes.forEach(recipe => {
+    recipe.content = {}
+    recipe.content.tags = flattenTags(recipe.tags)
+  })
+  const allRecipes = [
+    ...data.directus.recipes,
+    ...data.allContentfulRecipe.nodes,
+  ]
+  const newTags = setupTags(allRecipes)
   return (
     <Layout>
       <section className="grid gap-8 pb-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -16,7 +25,7 @@ const Tags = ({ data }) => {
             <Link
               to={`/tags/${tagSlug}`}
               key={index}
-              className="rounded-lg bg-zinc-700 py-3 px-0 text-center text-white transition-all duration-300 ease-in-out hover:bg-indigo-500"
+              className="rounded-lg bg-zinc-700 px-0 py-3 text-center text-white transition-all duration-300 ease-in-out hover:bg-indigo-500"
             >
               <h5 className="mb-0 font-semibold">{text}</h5>
               <p className="mb-0">{value} recipes</p>
@@ -34,6 +43,15 @@ export const query = graphql`
       nodes {
         content {
           tags
+        }
+      }
+    }
+    directus {
+      recipes {
+        tags {
+          tags_id {
+            tag_name
+          }
         }
       }
     }

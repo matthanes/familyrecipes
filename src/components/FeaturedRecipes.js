@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import TagsList from './TagsList'
 import RecipesList from './RecipesList'
 import SearchBar from './SearchBar'
@@ -19,25 +19,49 @@ const query = graphql`
       }
       totalCount
     }
+    directus {
+      recipes {
+        image {
+          id
+          imageFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
+          }
+        }
+        id
+        title
+        cook_time
+        prep_time
+        featured
+        servings
+        status
+      }
+    }
   }
 `
 
 const FeaturedRecipes = () => {
   const data = useStaticQuery(query)
-  const recipes = data.allContentfulRecipe.nodes
-  const featuredRecipes = recipes.filter(recipe => recipe.featured)
-
+  const recipes = data?.allContentfulRecipe?.nodes
+  const directusRecipes = data?.directus?.recipes
+  const allRecipes = useMemo(() => [...recipes, ...directusRecipes], [recipes, directusRecipes])
+  const featuredRecipes = useMemo(
+    () => allRecipes?.filter(recipe => recipe?.featured === true),
+    [allRecipes]
+  )
   const [searchTerm, setSearchTerm] = useState('')
-  const [searchResults, setSearchResults] = useState([])
+  const [searchResults, setSearchResults] = useState(allRecipes)
   const handleChange = event => {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event?.target?.value)
   }
+  const allRecipesRef = useRef(allRecipes)
   useEffect(() => {
-    const results = recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const results = allRecipesRef.current?.filter(recipe =>
+      recipe?.title?.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setSearchResults(results)
-  }, [searchTerm, recipes])
+  }, [searchTerm, allRecipesRef])
 
   return (
     <>

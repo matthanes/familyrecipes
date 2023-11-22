@@ -5,6 +5,13 @@ import Hamburger from './Hamburger'
 const Navbar = () => {
   const [show, setShow] = useState(false)
 
+  const links = [
+    { to: '/', text: 'Home' },
+    { to: '/allrecipes', text: 'Recipes' },
+    { to: '/tags', text: 'Tags' },
+    { to: 'https://admin.recipes.matthanesprojects.com', text: 'Login' },
+  ]
+
   return (
     <nav className="flex items-center justify-center lg:h-24">
       <div className="w-[90vw] max-w-7xl lg:flex lg:items-center">
@@ -24,33 +31,19 @@ const Navbar = () => {
               : 'flex h-0 flex-col overflow-hidden transition-all duration-300 ease-in-out lg:h-auto lg:w-full lg:flex-row lg:items-center lg:justify-end'
           }
         >
-          <Link
-            to="/"
-            className="block border-t-[1px] border-solid border-gray-500 py-4 px-0 text-center text-2xl font-medium capitalize 
-            tracking-wide transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white"
-            activeClassName="bg-indigo-500 text-white rounded-lg"
-            onClick={() => setShow(false)}
-          >
-            Home
-          </Link>
-          <Link
-            to="/allrecipes"
-            className="block border-t-[1px] border-solid border-gray-500 py-4 px-0 text-center text-2xl font-medium capitalize 
-            tracking-wide transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white"
-            activeClassName="bg-indigo-500 text-white rounded-lg"
-            onClick={() => setShow(false)}
-          >
-            Recipes
-          </Link>
-          <Link
-            to="/tags"
-            className="block border-t-[1px] border-solid border-gray-500 py-4 px-0 text-center text-2xl font-medium capitalize 
-            tracking-wide transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white"
-            activeClassName="bg-indigo-500 text-white rounded-lg"
-            onClick={() => setShow(false)}
-          >
-            Tags
-          </Link>
+          {links.map((link, index) => {
+            return (
+              <Link
+                to={link.to}
+                key={index}
+                className='lg:hover:text-white" activeClassName="bg-indigo-500 block rounded-lg border-t-[1px] border-solid border-gray-500 px-0 py-4 text-center text-2xl font-medium capitalize tracking-wide text-white transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2
+                lg:py-1 lg:text-lg lg:hover:bg-indigo-500'
+                onClick={() => setShow(false)}
+              >
+                {link.text}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </nav>

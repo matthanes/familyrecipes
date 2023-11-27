@@ -5,6 +5,7 @@ const Hamburger = ({ handleClick, active }) => {
     <button
       className="hover:bg-secondary flex flex-col rounded p-3 text-zinc-700 outline-none dark:text-white dark:hover:text-white lg:hidden"
       onClick={handleClick}
+      aria-label='Mobile Menu'
     >
       <div
         className={`ease my-[.1875rem] h-1 w-6 transform rounded-full bg-indigo-500 transition duration-300 dark:bg-white ${

@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     
   repository_dispatch:
-    types: [contentful.deploy, directus.deploy]
+    types: [contentful.deploy, directus_deploy]
 
 jobs:
   build:

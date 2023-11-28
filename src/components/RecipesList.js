@@ -4,6 +4,14 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import slugify from 'slugify'
 
 const RecipesList = ({ recipes = [] }) => {
+  // sort recipes alphabetically by title
+  recipes.sort((a, b) => {
+    const aTitle = a.title.toLowerCase()
+    const bTitle = b.title.toLowerCase()
+    if (aTitle < bTitle) return -1
+    if (aTitle > bTitle) return 1
+    return 0
+  })
   return (
     <div className="recipes-list grid gap-x-4 gap-y-8 pb-12 sm:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1fr_1fr]">
       {recipes.length > 0 ? (

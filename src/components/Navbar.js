@@ -27,7 +27,7 @@ const Navbar = () => {
         <div
           className={
             show
-              ? 'flex h-52 flex-col overflow-hidden transition-all duration-300 ease-in-out lg:h-auto lg:w-full lg:flex-row lg:items-center'
+              ? 'flex h-64 flex-col overflow-hidden transition-all duration-300 ease-in-out lg:h-auto lg:w-full lg:flex-row lg:items-center'
               : 'flex h-0 flex-col overflow-hidden transition-all duration-300 ease-in-out lg:h-auto lg:w-full lg:flex-row lg:items-center lg:justify-end'
           }
         >

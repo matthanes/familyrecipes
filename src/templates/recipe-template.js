@@ -7,6 +7,7 @@ import { MdOutlineTimer } from 'react-icons/md'
 import slugify from 'slugify'
 import Layout from '../components/Layout'
 import flattenTags from '../utils/flattenTags'
+import decimalToFraction from '../utils/decimalToFraction'
 
 const RecipeTemplate = ({ data }) => {
   const {
@@ -102,7 +103,7 @@ const RecipeTemplate = ({ data }) => {
                   key={index}
                   className="border-b-[1px] border-solid border-gray-500 pb-3"
                 >
-                  {item.amount} {item.measurement} {item.ingredient}
+                  {decimalToFraction(item.amount)} {item.measurement} {item.ingredient}
                 </p>
               )
             })}

@@ -6,6 +6,7 @@ import { GiSandsOfTime } from 'react-icons/gi'
 import { MdOutlineTimer } from 'react-icons/md'
 import slugify from 'slugify'
 import Layout from '../components/Layout'
+import minutesToHours from '../utils/minutesToHours'
 
 const RecipeTemplate = ({ data }) => {
   const {
@@ -37,12 +38,12 @@ const RecipeTemplate = ({ data }) => {
             <article>
               <MdOutlineTimer className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Prep Time</h5>
-              <p className="text-md mb-0">{prepTime} min</p>
+              <p className="text-md mb-0">{minutesToHours(prepTime)}</p>
             </article>
             <article>
               <GiSandsOfTime className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Cook Time</h5>
-              <p className="text-md mb-0">{cookTime} min</p>
+              <p className="text-md mb-0">{minutesToHours(cookTime)}</p>
             </article>
             <article>
               <BsPieChart className="mx-auto mb-2 text-2xl" />

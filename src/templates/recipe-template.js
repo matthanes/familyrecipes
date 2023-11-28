@@ -48,7 +48,7 @@ const RecipeTemplate = ({ data }) => {
             <div>
               <MdOutlineTimer className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Prep Time</h5>
-              <p className="text-md mb-0">{minutesToHours(prepTime)} min</p>
+              <p className="text-md mb-0">{minutesToHours(prepTime)}</p>
             </div>
             <div>
               <GiSandsOfTime className="mx-auto mb-2 text-2xl" />

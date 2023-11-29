@@ -47,7 +47,7 @@ export const query = graphql`
       }
     }
     directus {
-      recipes {
+      recipes (filter: {status: {_eq: "published"}}) {
         tags {
           tags_id {
             tag_name

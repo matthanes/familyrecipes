@@ -20,7 +20,7 @@ const query = graphql`
       totalCount
     }
     directus {
-      recipes {
+      recipes (filter: {status: {_eq: "published"}}) {
         image {
           id
           imageFile {

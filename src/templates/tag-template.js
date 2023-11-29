@@ -38,7 +38,7 @@ export const query = graphql`
       }
     }
     directus {
-      recipes(filter: {tags: {tags_id: {tag_name: {_icontains: $tag}}}}) {
+      recipes(filter: {_and: [{status: {_eq: "published"}}, {tags: {tags_id: {tag_name: {_icontains: $tag}}}}]}) {
         title
         id
         cook_time

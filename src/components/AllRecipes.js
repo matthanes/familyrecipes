@@ -21,7 +21,7 @@ const query = graphql`
       }
     }
     directus {
-      recipes {
+      recipes (filter: {status: {_eq: "published"}}) {
         image {
           id
           imageFile {

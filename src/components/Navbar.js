@@ -32,6 +32,19 @@ const Navbar = () => {
           }
         >
           {links.map((link, index) => {
+            if (link.to.includes('http')) {
+              return (
+                <a
+                  href={link.to}
+                  key={index}
+                  className='lg:hover:text-white" activeClassName="bg-indigo-500 block rounded-lg border-t-[1px] border-solid border-gray-500 px-0 py-4 text-center text-2xl font-medium capitalize tracking-wide text-white transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2
+                lg:py-1 lg:text-lg lg:hover:bg-indigo-500'
+                  onClick={() => setShow(false)}
+                >
+                  {link.text}
+                </a>
+              )
+            }
             return (
               <Link
                 to={link.to}

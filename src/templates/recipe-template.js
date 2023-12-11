@@ -26,14 +26,14 @@ const RecipeTemplate = ({ data }) => {
     tags,
     tools,
   } = recipes[0]
-  
+
   // extract image
   const pathToImage = getImage(image.imageFile)
 
   // flatten tags
   tags = flattenTags(tags)
 
-  const substituteIngredient = (step) => {
+  const substituteIngredient = step => {
     // Find instances of {{1}}, {{2}}, etc...
     const regex = /{{\d+}}/g
     const matches = step.match(regex)
@@ -41,12 +41,15 @@ const RecipeTemplate = ({ data }) => {
       matches.forEach(match => {
         // ingredientIndex is the number within the match and subtract for zero indexing
         const ingredientIndex = match.match(/\d+/)[0] - 1
-        const { amount, measurement, ingredient } = ingredients[ingredientIndex] || {}
+        const { amount, measurement, ingredient } =
+          ingredients[ingredientIndex] || {}
         const replacementPhrase = [
           amount && decimalToFraction(amount),
           measurement,
-          ingredient
-        ].filter(Boolean).join(' ')
+          ingredient,
+        ]
+          .filter(Boolean)
+          .join(' ')
         step = step.replace(match, replacementPhrase)
       })
     }
@@ -56,11 +59,13 @@ const RecipeTemplate = ({ data }) => {
   return (
     <Layout>
       <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
-        {pathToImage && <GatsbyImage
-          image={pathToImage}
-          alt={title}
-          className="h-96 rounded-lg"
-        />}
+        {pathToImage && (
+          <GatsbyImage
+            image={pathToImage}
+            alt={title}
+            className="h-96 rounded-lg"
+          />
+        )}
         <div className="">
           <h2>{title}</h2>
           <p className="text-justify">{description}</p>
@@ -124,7 +129,9 @@ const RecipeTemplate = ({ data }) => {
                   key={index}
                   className="border-b-[1px] border-solid border-gray-500 pb-3"
                 >
-                  {decimalToFraction(item.amount)} {item.measurement} {item.ingredient}
+                  {`${decimalToFraction(item.amount)} ${item.measurement} ${
+                    item.ingredient
+                  }`}
                 </p>
               )
             })}

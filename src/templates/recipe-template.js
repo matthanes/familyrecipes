@@ -33,6 +33,26 @@ const RecipeTemplate = ({ data }) => {
   // flatten tags
   tags = flattenTags(tags)
 
+  const substituteIngredient = (step) => {
+    // Find instances of {{1}}, {{2}}, etc...
+    const regex = /{{\d+}}/g
+    const matches = step.match(regex)
+    if (matches) {
+      matches.forEach(match => {
+        // ingredientIndex is the number within the match and subtract for zero indexing
+        const ingredientIndex = match.match(/\d+/)[0] - 1
+        const { amount, measurement, ingredient } = ingredients[ingredientIndex] || {}
+        const replacementPhrase = [
+          amount && decimalToFraction(amount),
+          measurement,
+          ingredient
+        ].filter(Boolean).join(' ')
+        step = step.replace(match, replacementPhrase)
+      })
+    }
+    return step
+  }
+
   return (
     <Layout>
       <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
@@ -90,7 +110,7 @@ const RecipeTemplate = ({ data }) => {
                   </p>
                   <div className="h-[1px] bg-gray-500"></div>
                 </header>
-                <p>{item.step}</p>
+                <p>{substituteIngredient(item.step)}</p>
               </div>
             )
           })}

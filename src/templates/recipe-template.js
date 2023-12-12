@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { BsPieChart } from 'react-icons/bs'
@@ -11,6 +11,7 @@ import decimalToFraction from '../utils/decimalToFraction'
 import minutesToHours from '../utils/minutesToHours'
 
 const RecipeTemplate = ({ data }) => {
+  
   const {
     directus: { recipes },
   } = data
@@ -26,6 +27,9 @@ const RecipeTemplate = ({ data }) => {
     tags,
     tools,
   } = recipes[0]
+
+  const [updatedIngredients, setIngredients] = useState(ingredients)
+  const [multiplier, setMultiplier] = useState(1)
 
   // extract image
   const pathToImage = getImage(image.imageFile)
@@ -44,7 +48,7 @@ const RecipeTemplate = ({ data }) => {
         const { amount, measurement, ingredient } =
           ingredients[ingredientIndex] || {}
         const replacementPhrase = [
-          amount && decimalToFraction(amount),
+          amount && decimalToFraction(amount * multiplier),
           measurement,
           ingredient,
         ]
@@ -54,6 +58,22 @@ const RecipeTemplate = ({ data }) => {
       })
     }
     return step
+  }
+
+  useEffect(() => {
+    const updatedIngredients = ingredients.map(item => {
+      const updatedAmount = item.amount * multiplier
+      return {
+        ...item,
+        amount: updatedAmount,
+      }
+    })
+    setIngredients(updatedIngredients)
+  }, [multiplier, ingredients])
+
+  const handleOnChange = event => {
+    const { value } = event.target
+    setMultiplier(value)
   }
 
   return (
@@ -123,14 +143,39 @@ const RecipeTemplate = ({ data }) => {
         <div className="grid gap-y-8">
           <div>
             <h4>Ingredients</h4>
-            {ingredients.map((item, index) => {
+            <label
+              htmlFor="quantity-input"
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Increase Recipe:
+            </label>
+            <div className="relative flex max-w-[8rem] items-center">
+              <input
+                type="number"
+                id="quantity-input"
+                min="1"
+                step="1"
+                defaultValue={1}
+                aria-describedby="helper-text-explanation"
+                className="w-16 rounded-xl border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                onChange={handleOnChange}
+              />
+            </div>
+            <p
+              id="helper-text-explanation"
+              className="mt-2 text-sm text-gray-500 dark:text-gray-400"
+            >
+              Select a number to multiply ingredients.
+            </p>
+            {updatedIngredients.map((item, index) => {
+              const { amount='', measurement='', ingredient='' } = item
               return (
                 <p
                   key={index}
                   className="border-b-[1px] border-solid border-gray-500 pb-3"
                 >
-                  {`${decimalToFraction(item.amount)} ${item.measurement} ${
-                    item.ingredient
+                  {`${decimalToFraction(amount)} ${measurement} ${
+                    ingredient
                   }`}
                 </p>
               )

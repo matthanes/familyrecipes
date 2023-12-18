@@ -5,7 +5,7 @@
   }
 
   body {
-    @apply bg-gray-50 font-montserrat font-normal leading-7 text-zinc-700 dark:bg-zinc-800 dark:text-slate-200;
+    @apply bg-[whitesmoke] font-montserrat font-normal leading-7 text-zinc-700 dark:bg-zinc-800 dark:text-slate-200;
   }
 
   main {

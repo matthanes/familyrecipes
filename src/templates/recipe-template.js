@@ -103,7 +103,7 @@ const RecipeTemplate = ({ data }) => {
             <div>
               <BsPieChart className="mx-auto mb-2 text-2xl" />
               <h5 className="text-md mb-0 font-semibold">Servings</h5>
-              <p className="text-md mb-0">{servings}</p>
+              <p className="text-md mb-0">{servings * multiplier}</p>
             </div>
           </div>
           <p className="flex flex-wrap items-center font-semibold">
@@ -157,7 +157,7 @@ const RecipeTemplate = ({ data }) => {
                 step="1"
                 defaultValue={1}
                 aria-describedby="helper-text-explanation"
-                className="w-16 rounded-xl border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="w-16 rounded-xl border-2 border-gray-800 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border=0 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 onChange={handleOnChange}
               />
             </div>

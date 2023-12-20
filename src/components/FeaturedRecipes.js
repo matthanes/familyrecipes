@@ -20,7 +20,7 @@ const query = graphql`
       totalCount
     }
     directus {
-      recipes (filter: {status: {_eq: "published"}}) {
+      recipes {
         image {
           id
           imageFile {
@@ -41,10 +41,15 @@ const query = graphql`
   }
 `
 
+const DEV = process.env.NODE_ENV === 'development'
+
 const FeaturedRecipes = () => {
   const data = useStaticQuery(query)
   const recipes = data?.allContentfulRecipe?.nodes
-  const directusRecipes = data?.directus?.recipes
+  let directusRecipes = data?.directus?.recipes
+  if (!DEV) {
+    directusRecipes = directusRecipes?.filter(recipe => recipe?.status === 'published')
+  }
   const allRecipes = useMemo(() => [...recipes, ...directusRecipes], [recipes, directusRecipes])
   const featuredRecipes = useMemo(
     () => allRecipes?.filter(recipe => recipe?.featured === true),

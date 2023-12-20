@@ -3,13 +3,22 @@ import { graphql } from 'gatsby'
 import RecipesList from '../components/RecipesList'
 import Layout from '../components/Layout'
 
+const DEV = process.env.NODE_ENV === 'development'
+
 const TagTemplate = ({ data, pageContext }) => {
   const recipes = data.allContentfulRecipe.nodes
-  const directusRecipes = data.directus.recipes
-  directusRecipes.forEach(recipe => {
-    recipe.content = {}
-    recipe.content.tags = recipe.tags
-  })
+  let directusRecipes = data.directus.recipes
+
+  directusRecipes = directusRecipes.reduce((filteredRecipes, recipe) => {
+    recipe.content = { tags: recipe.tags }
+
+    if (DEV || recipe.status === 'published') {
+      filteredRecipes.push(recipe)
+    }
+
+    return filteredRecipes
+  }, [])
+
   const allRecipes = [...directusRecipes, ...recipes]
   return (
     <Layout>
@@ -38,8 +47,11 @@ export const query = graphql`
       }
     }
     directus {
-      recipes(filter: {_and: [{status: {_eq: "published"}}, {tags: {tags_id: {tag_name: {_icontains: $tag}}}}]}) {
+      recipes(
+        filter: { tags: { tags_id: { tag_name: { _icontains: $tag } } } }
+      ) {
         title
+        status
         id
         cook_time
         prep_time

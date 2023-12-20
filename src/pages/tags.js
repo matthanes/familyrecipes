@@ -5,15 +5,24 @@ import setupTags from '../utils/setupTags'
 import flattenTags from '../utils/flattenTags'
 import slugify from 'slugify'
 
+const DEV = process.env.NODE_ENV === 'development'
+
 const Tags = ({ data }) => {
-  data.directus.recipes.forEach(recipe => {
+  const recipes = data.allContentfulRecipe.nodes
+  let directusRecipes = data.directus.recipes
+
+  directusRecipes = directusRecipes.reduce((filteredRecipes, recipe) => {
     recipe.content = {}
     recipe.content.tags = flattenTags(recipe.tags)
-  })
-  const allRecipes = [
-    ...data.directus.recipes,
-    ...data.allContentfulRecipe.nodes,
-  ]
+
+    if (DEV || recipe.status === 'published') {
+      filteredRecipes.push(recipe)
+    }
+
+    return filteredRecipes
+  }, [])
+
+  const allRecipes = [...directusRecipes, ...recipes]
   const newTags = setupTags(allRecipes)
   return (
     <Layout>
@@ -47,7 +56,8 @@ export const query = graphql`
       }
     }
     directus {
-      recipes (filter: {status: {_eq: "published"}}) {
+      recipes {
+        status
         tags {
           tags_id {
             tag_name

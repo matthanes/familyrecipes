@@ -1,5 +1,4 @@
 const getFraction = decimal => {
-  console.log(decimal)
   const fractions = [
     { numerator: 1, denominator: 2 },
     { numerator: 1, denominator: 4 },

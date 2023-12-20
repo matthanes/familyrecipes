@@ -21,7 +21,7 @@ const query = graphql`
       }
     }
     directus {
-      recipes (filter: {status: {_eq: "published"}}) {
+      recipes {
         image {
           id
           imageFile {
@@ -50,10 +50,16 @@ const query = graphql`
     }
   }
 `
+
+const DEV = process.env.NODE_ENV === 'development'
+
 const AllRecipes = () => {
   const data = useStaticQuery(query)
   const recipes = data?.allContentfulRecipe?.nodes
-  const directusRecipes = data?.directus?.recipes
+  let directusRecipes = data?.directus?.recipes
+  if (!DEV) {
+    directusRecipes = directusRecipes?.filter(recipe => recipe?.status === 'published')
+  }
   const allRecipes = useMemo(() => [...recipes, ...directusRecipes], [recipes, directusRecipes])
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState(allRecipes)
@@ -81,7 +87,7 @@ const AllRecipes = () => {
           </div>
         ) : (
           <div>
-            <h3>Featured Recipes</h3>
+            <h3>All Recipes</h3>
             <RecipesList recipes={allRecipes} />
           </div>
         )}

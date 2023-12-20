@@ -15,7 +15,8 @@ const query = graphql`
       }
     }
     directus {
-      recipes (filter: {status: {_eq: "published"}}) {
+      recipes {
+        status
         tags {
           tags_id {
             tag_name
@@ -26,16 +27,28 @@ const query = graphql`
   }
 `
 
+const DEV = process.env.NODE_ENV === 'development'
+
 const TagsList = () => {
+
+  // Something is causing the TagsList to not give the correct number of items per tag in production.
   const data = useStaticQuery(query)
   const recipes = data.allContentfulRecipe.nodes
-  const directusRecipes = data.directus.recipes
-  // restructure directusRecipes to match recipes
-  directusRecipes.forEach(recipe => {
+  let directusRecipes = data.directus.recipes
+
+  directusRecipes = directusRecipes.reduce((filteredRecipes, recipe) => {
     recipe.content = {}
     recipe.content.tags = flattenTags(recipe.tags)
-  })
-  const newTags = setupTags([...recipes, ...directusRecipes])
+
+    if (DEV || recipe.status === 'published') {
+      filteredRecipes.push(recipe)
+    }
+
+    return filteredRecipes
+  }, [])
+
+  const allRecipes = [...directusRecipes, ...recipes]
+  const newTags = setupTags(allRecipes)
   return (
     <div className="order-1 mb-4 flex flex-col lg:order-none">
       <h4 className="mb-2 text-center font-bold lg:text-left">Tags</h4>

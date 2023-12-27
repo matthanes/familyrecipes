@@ -126,7 +126,7 @@ const RecipeTemplate = ({ data }) => {
       <section className="grid gap-x-20 gap-y-8 px-0 py-12 lg:grid-cols-[2fr_1fr]">
         <div>
           <h4>Instructions</h4>
-          {instructions.map((item, index) => {
+          {instructions && instructions.map((item, index) => {
             return (
               <div key={index}>
                 <header className="grid grid-cols-[auto_1fr] items-center gap-6">
@@ -167,7 +167,7 @@ const RecipeTemplate = ({ data }) => {
             >
               Select a number to multiply ingredients.
             </p>
-            {updatedIngredients.map((item, index) => {
+            {updatedIngredients && updatedIngredients.map((item, index) => {
               const { amount='', measurement='', ingredient='' } = item
               return (
                 <p
@@ -183,7 +183,7 @@ const RecipeTemplate = ({ data }) => {
           </div>
           <div>
             <h4>Tools</h4>
-            {tools.map((item, index) => {
+            {tools && tools.map((item, index) => {
               return (
                 <p
                   key={index}

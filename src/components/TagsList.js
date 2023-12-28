@@ -50,7 +50,7 @@ const TagsList = () => {
   const allRecipes = [...directusRecipes, ...recipes]
   const newTags = setupTags(allRecipes)
   return (
-    <div className="order-1 mb-4 flex flex-col lg:order-none">
+    <aside className="order-1 mb-4 flex flex-col lg:order-none">
       <h4 className="mb-2 text-center font-bold lg:text-left">Tags</h4>
       <div className="grid grid-cols-[1fr_1fr] text-center lg:grid-cols-1 lg:text-left">
         {newTags.map((tag, index) => {
@@ -67,7 +67,7 @@ const TagsList = () => {
           )
         })}
       </div>
-    </div>
+    </aside>
   )
 }
 

@@ -87,7 +87,6 @@ const AllRecipes = () => {
           </div>
         ) : (
           <div>
-            <h3>All Recipes</h3>
             <RecipesList recipes={allRecipes} />
           </div>
         )}

@@ -113,7 +113,7 @@ const RecipesList = ({ recipes = [] }) => {
           </ul>
         </section>
       )}
-      <section className="recipes-list grid gap-x-4 gap-y-8 pb-12 sm:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1fr_1fr]">
+      <section className="recipes-list grid gap-x-4 gap-y-8 pb-12 sm:grid-cols-2 sm:grid-rows-3 xl:grid-cols-3 xl:grid-rows-2">
         {currentRecipes.length > 0 ? (
           currentRecipes.map(recipe => {
             let { id, title, image, prepTime, cookTime } = recipe

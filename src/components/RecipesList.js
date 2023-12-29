@@ -66,7 +66,7 @@ const RecipesList = ({ recipes = [] }) => {
           <ul className="inline-flex">
             <li>
               <button
-                className="focus:shadow-outline h-10 rounded-l-lg border border-r-0 border-indigo-600 px-4 py-2 text-white transition-all duration-300 hover:bg-indigo-600 disabled:bg-transparent disabled:text-gray-600"
+                className="focus:shadow-outline h-10 rounded-l-lg border border-r-0 border-indigo-600 px-4 py-2 text-slate-800 transition-all duration-300 hover:bg-indigo-600 hover:text-white disabled:bg-transparent disabled:text-gray-400 dark:text-white dark:disabled:text-gray-600"
                 disabled={currentPage === 1}
                 onClick={prevPage}
                 aria-label="Previous Page"
@@ -79,7 +79,7 @@ const RecipesList = ({ recipes = [] }) => {
               (number, index) => {
                 return number === '...' ? (
                   <li
-                    className="h-10 border border-r-0 border-indigo-600 px-4 text-white"
+                    className="h-10 border border-r-0 border-indigo-600 px-4 light:text-white"
                     key={index}
                   >
                     ...
@@ -87,8 +87,8 @@ const RecipesList = ({ recipes = [] }) => {
                 ) : (
                   <li key={index}>
                     <button
-                      className={`focus:shadow-outline h-10 border border-r-0 border-indigo-600 px-4 py-2 text-white transition-all duration-300 hover:bg-indigo-600 ${
-                        currentPage === number && 'bg-indigo-600'
+                      className={`focus:shadow-outline h-10 border border-r-0 border-indigo-600 px-4 py-2 transition-all duration-300 hover:bg-indigo-600 hover:text-white dark:text-white ${
+                        currentPage === number && 'bg-indigo-600 text-white'
                       }`}
                       onClick={() => {
                         setCurrentPage(number)
@@ -102,7 +102,7 @@ const RecipesList = ({ recipes = [] }) => {
             )}
             <li>
               <button
-                className="focus:shadow-outline h-10 rounded-r-lg border border-indigo-600 px-4 py-2 text-white transition-all duration-300 hover:bg-indigo-600 disabled:bg-transparent disabled:text-gray-600"
+                className="focus:shadow-outline h-10 rounded-r-lg border border-indigo-600 px-4 py-2 text-slate-800 transition-all duration-300 hover:bg-indigo-600 hover:text-white disabled:bg-transparent disabled:text-gray-400 dark:text-white dark:disabled:text-gray-600"
                 disabled={currentPage === totalPages}
                 onClick={nextPage}
                 aria-label="Next Page"

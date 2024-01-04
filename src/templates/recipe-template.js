@@ -6,12 +6,12 @@ import { GiSandsOfTime } from 'react-icons/gi'
 import { MdOutlineTimer } from 'react-icons/md'
 import slugify from 'slugify'
 import Layout from '../components/Layout'
+import RecipeMultiplier from '../components/RecipeMultiplier'
 import flattenTags from '../utils/flattenTags'
 import decimalToFraction from '../utils/decimalToFraction'
 import minutesToHours from '../utils/minutesToHours'
 
 const RecipeTemplate = ({ data }) => {
-  
   const {
     directus: { recipes },
   } = data
@@ -71,11 +71,6 @@ const RecipeTemplate = ({ data }) => {
     setIngredients(updatedIngredients)
   }, [multiplier, ingredients])
 
-  const handleOnChange = event => {
-    const { value } = event.target
-    setMultiplier(value)
-  }
-
   return (
     <Layout>
       <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
@@ -126,19 +121,20 @@ const RecipeTemplate = ({ data }) => {
       <section className="grid gap-x-20 gap-y-8 px-0 py-12 lg:grid-cols-[2fr_1fr]">
         <div>
           <h4>Instructions</h4>
-          {instructions && instructions.map((item, index) => {
-            return (
-              <div key={index}>
-                <header className="grid grid-cols-[auto_1fr] items-center gap-6">
-                  <p className="mb-0 font-semibold uppercase tracking-wider text-indigo-600  dark:text-indigo-400">
-                    Step {index + 1}
-                  </p>
-                  <div className="h-[1px] bg-gray-500"></div>
-                </header>
-                <p>{substituteIngredient(item.step)}</p>
-              </div>
-            )
-          })}
+          {instructions &&
+            instructions.map((item, index) => {
+              return (
+                <div key={index}>
+                  <header className="grid grid-cols-[auto_1fr] items-center gap-6">
+                    <p className="mb-0 font-semibold uppercase tracking-wider text-indigo-600  dark:text-indigo-400">
+                      Step {index + 1}
+                    </p>
+                    <div className="h-[1px] bg-gray-500"></div>
+                  </header>
+                  <p>{substituteIngredient(item.step)}</p>
+                </div>
+              )
+            })}
         </div>
         <div className="grid gap-y-8">
           <div>
@@ -149,50 +145,38 @@ const RecipeTemplate = ({ data }) => {
             >
               Increase Recipe:
             </label>
-            <div className="relative flex max-w-[8rem] items-center">
-              <input
-                type="number"
-                id="quantity-input"
-                min="1"
-                step="1"
-                defaultValue={1}
-                aria-describedby="helper-text-explanation"
-                className="w-16 rounded-xl border-2 border-gray-800 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border=0 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                onChange={handleOnChange}
-              />
-            </div>
-            <p
-              id="helper-text-explanation"
-              className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-            >
-              Select a number to multiply ingredients.
-            </p>
-            {updatedIngredients && updatedIngredients.map((item, index) => {
-              const { amount='', measurement='', ingredient='' } = item
-              return (
-                <p
-                  key={index}
-                  className="border-b-[1px] border-solid border-gray-500 pb-3"
-                >
-                  {`${decimalToFraction(amount)} ${measurement} ${
-                    ingredient
-                  }`}
-                </p>
-              )
-            })}
+            <RecipeMultiplier
+              multiplier={multiplier}
+              setMultiplier={setMultiplier}
+            />
+            {updatedIngredients &&
+              updatedIngredients.map((item, index) => {
+                const { amount = '', measurement = '', ingredient = '' } = item
+                return (
+                  <p
+                    key={index}
+                    className="border-b-[1px] border-solid border-gray-500 pb-3"
+                  >
+                    {`${decimalToFraction(
+                      amount
+                    )} ${measurement} ${ingredient}`}
+                  </p>
+                )
+              })}
           </div>
           <div>
             <h4>Tools</h4>
-            {tools && tools.map((item, index) => {
-              return (
-                <p
-                  key={index}
-                  className="border-b-[1px] border-solid border-gray-500 pb-3 capitalize text-indigo-600 dark:text-indigo-400"
-                >
-                  {item.tool}
-                </p>
-              )
-            })}
+            {tools &&
+              tools.map((item, index) => {
+                return (
+                  <p
+                    key={index}
+                    className="border-b-[1px] border-solid border-gray-500 pb-3 capitalize text-indigo-600 dark:text-indigo-400"
+                  >
+                    {item.tool}
+                  </p>
+                )
+              })}
           </div>
         </div>
       </section>

@@ -157,9 +157,9 @@ const RecipeTemplate = ({ data }) => {
                     key={index}
                     className="border-b-[1px] border-solid border-gray-500 pb-3"
                   >
-                    {`${decimalToFraction(
-                      amount
-                    )} ${measurement} ${ingredient}`}
+                    {`${
+                      isNaN(amount) ? '' : decimalToFraction(amount)
+                    } ${measurement} ${ingredient}`}
                   </p>
                 )
               })}

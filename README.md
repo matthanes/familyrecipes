@@ -1,11 +1,11 @@
 ## 🚀 Run locally
 
-1.  **Install NPM**
+1.  **Install Bun**
 
 2.  **Clone the repo**
 
 3.  **Setup the Environment**
-    You will need to setup an .env.development file in the root with a Contentful spaceID and access token. 
+    You will need to setup an .env.development file in the root with a Contentful spaceID and access token.
 
     ```shell
     CONTENTFUL_SPACE_ID=space_id_goes_here
@@ -17,14 +17,12 @@
     Navigate your terminal to the repo's folder and run these commands:
 
     ```shell
-    npm install && npm run develop
+    bun install && bun dev
     ```
 
 5.  **Open the source code and start editing!**
 
-    Your site is now running at `http://localhost:8000`!
-
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-4/#use-graphiql-to-explore-the-data-layer-and-write-graphql-queries)._
+    Your site is now running at `http://localhost:3000`!
 
 6.  **Below is a sample of the deploy script I'm using in Github actions**
 
@@ -42,14 +40,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.1.5
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 14
-          
+          bun-version: latest
+
       - name: Build
         run: |
-          npm install
-          npm run build-prefix
+          bun install
+          bun run build
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
@@ -59,7 +57,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - run: aws s3 sync ./public s3://matthanesprojects.com/recipes
+      - run: aws s3 sync ./out s3://matthanesprojects.com/recipes
 
       - run: aws cloudfront create-invalidation --distribution-id=$CLOUDFRONT_DISTRIBUTION_ID --paths '/recipes/*'
         env:

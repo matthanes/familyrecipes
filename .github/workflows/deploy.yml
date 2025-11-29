@@ -14,14 +14,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 18
+          bun-version: latest
           
       - name: Build
         run: |
-          npm install
-          npm run build-prefix
+          bun install
+          bun run build
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
@@ -34,7 +34,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - run: aws s3 sync ./public s3://matthanesprojects.com/recipes
+      - run: aws s3 sync ./out s3://matthanesprojects.com/recipes
+      - run: aws s3 cp ./out/sw.js s3://matthanesprojects.com/recipes/sw.js --cache-control "no-cache, no-store, must-revalidate"
 
       - run: aws cloudfront create-invalidation --distribution-id=$CLOUDFRONT_DISTRIBUTION_ID --paths '/recipes/*'
         env:

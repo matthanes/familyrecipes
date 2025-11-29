@@ -28,7 +28,7 @@ const FeaturedRecipes: React.FC<FeaturedRecipesProps> = ({ recipes }) => {
   return (
     <>
       <SearchBar handleChange={handleChange} searchTerm={searchTerm} />
-      <section className="grid gap-x-4 gap-y-8 lg:grid lg:grid-cols-[200px_1fr] lg:gap-[1rem]">
+      <section className="grid gap-x-4 gap-y-8 lg:grid lg:grid-cols-[200px_1fr] lg:gap-4">
         <TagsList recipes={recipes} />
         {/* If there is a search term, show searchResults otherwise show featured Recipes */}
         {searchTerm.length > 0 ? (

@@ -120,7 +120,7 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
               const tagSlug = slugify(tag, { lower: true })
               return (
                 <Link
-                  className="m-1 rounded-lg bg-indigo-500 px-2 py-[.05rem] capitalize text-white first:ml-4"
+                  className="m-1 rounded-lg bg-indigo-500 px-2 py-[.05rem] text-white capitalize first:ml-4"
                   href={`/tags/${tagSlug}`}
                   key={index}
                 >
@@ -140,10 +140,10 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
               return (
                 <div key={index}>
                   <header className="grid grid-cols-[auto_1fr] items-center gap-6">
-                    <p className="mb-0 font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                    <p className="mb-0 font-semibold tracking-wider text-indigo-600 uppercase dark:text-indigo-400">
                       Step {index + 1}
                     </p>
-                    <div className="h-[1px] bg-gray-500"></div>
+                    <div className="h-px bg-gray-500"></div>
                   </header>
                   <p>{substituteIngredient(stepText)}</p>
                 </div>
@@ -178,7 +178,7 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
                   return (
                     <p
                       key={index}
-                      className="border-b-[1px] border-solid border-gray-500 pb-3"
+                      className="border-b border-solid border-gray-500 pb-3"
                     >
                       {`${
                         isNaN(amount) ? '' : decimalToFraction(amount)
@@ -189,7 +189,7 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
               : (ingredients as string[])?.map((item, index) => (
                   <p
                     key={index}
-                    className="border-b-[1px] border-solid border-gray-500 pb-3"
+                    className="border-b border-solid border-gray-500 pb-3"
                   >
                     {item}
                   </p>
@@ -203,7 +203,7 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
                 return (
                   <p
                     key={index}
-                    className="border-b-[1px] border-solid border-gray-500 pb-3 capitalize text-indigo-600 dark:text-indigo-400"
+                    className="border-b border-solid border-gray-500 pb-3 text-indigo-600 capitalize dark:text-indigo-400"
                   >
                     {toolName}
                   </p>

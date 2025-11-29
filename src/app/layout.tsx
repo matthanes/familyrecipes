@@ -43,7 +43,7 @@ export default function RootLayout({
         <Providers>
           <ServiceWorkerRegister />
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main className="grow">{children}</main>
           <Footer />
         </Providers>
       </body>

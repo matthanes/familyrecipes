@@ -12,7 +12,7 @@ const TagsList: React.FC<TagsListProps> = ({ recipes }) => {
   const newTags = setupTags(recipes)
 
   return (
-    <aside className="order-1 mb-4 flex flex-col lg:order-none">
+    <aside className="order-1 mb-4 flex flex-col lg:order-0">
       <h4 className="mb-2 text-center font-bold lg:text-left">Tags</h4>
       <div className="grid grid-cols-[1fr_1fr] text-center lg:grid-cols-1 lg:text-left">
         {newTags.map((tag, index) => {

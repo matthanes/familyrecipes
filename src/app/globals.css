@@ -1,6 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-montserrat: var(--font-montserrat);
+  --font-inconsolata: var(--font-inconsolata);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 @layer base {
   html {
@@ -8,7 +23,7 @@
   }
 
   body {
-    @apply bg-[whitesmoke] font-montserrat font-normal leading-7 text-zinc-700 dark:bg-zinc-800 dark:text-slate-200;
+    @apply font-montserrat bg-[whitesmoke] leading-7 font-normal text-zinc-700 dark:bg-zinc-800 dark:text-slate-200;
   }
 
   main {
@@ -24,15 +39,15 @@
   }
 
   h1 {
-    @apply mb-6 font-inconsolata text-5xl font-normal capitalize;
+    @apply font-inconsolata mb-6 text-5xl font-normal capitalize;
   }
   h2 {
-    @apply mb-6 font-inconsolata text-4xl font-normal capitalize;
+    @apply font-inconsolata mb-6 text-4xl font-normal capitalize;
   }
   h3 {
-    @apply mb-6 font-inconsolata text-3xl font-normal capitalize;
+    @apply font-inconsolata mb-6 text-3xl font-normal capitalize;
   }
   h4 {
-    @apply mb-6 font-inconsolata text-2xl font-normal capitalize;
+    @apply font-inconsolata mb-6 text-2xl font-normal capitalize;
   }
 }

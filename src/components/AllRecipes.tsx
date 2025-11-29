@@ -25,7 +25,7 @@ const AllRecipes: React.FC<AllRecipesProps> = ({ recipes }) => {
     <>
       <h2>All Recipes</h2>
       <SearchBar handleChange={handleChange} searchTerm={searchTerm} />
-      <section className="grid gap-x-4 gap-y-8 lg:grid-cols-[200px_1fr] lg:gap-[1rem]">
+      <section className="grid gap-x-4 gap-y-8 lg:grid-cols-[200px_1fr] lg:gap-4">
         <TagsList recipes={recipes} />
         {searchTerm.length > 0 ? (
           <div>

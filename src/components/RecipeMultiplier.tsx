@@ -22,7 +22,7 @@ const RecipeMultiplier: React.FC<RecipeMultiplierProps> = ({
 
   return (
     <>
-      <div className="relative flex max-w-[8rem] items-center">
+      <div className="relative flex max-w-32 items-center">
         <button
           onClick={decreaseQuantity}
           aria-label="decrease multiplier"
@@ -41,7 +41,7 @@ const RecipeMultiplier: React.FC<RecipeMultiplierProps> = ({
           value={multiplier}
           readOnly
           aria-describedby="helper-text-explanation"
-          className="dark:border=0 h-10 w-16 border border-r-0 border-indigo-600 bg-transparent py-2.5 text-center text-sm text-gray-900 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="dark:border=0 h-10 w-16 [appearance:textfield] border border-r-0 border-indigo-600 bg-transparent py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <button
           onClick={increaseQuantity}

@@ -32,7 +32,7 @@ const Navbar = () => {
             />
           </Link>
           <button
-            className="rounded-lg border-t-[1px] border-none bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600 lg:hidden"
+            className="rounded-lg border-t border-none bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600 lg:hidden"
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(window.location.href)
@@ -62,7 +62,7 @@ const Navbar = () => {
                 <a
                   href={link.to}
                   key={index}
-                  className={`block rounded-lg border-t-[1px] border-solid border-gray-500 px-0 py-4 text-center text-2xl font-medium capitalize tracking-wide transition-all duration-300 ease-in-out dark:text-white lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white ${activeClass}`}
+                  className={`block rounded-lg border-t border-solid border-gray-500 px-0 py-4 text-center text-2xl font-medium tracking-wide capitalize transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white dark:text-white ${activeClass}`}
                   onClick={() => setShow(false)}
                 >
                   {link.text}
@@ -73,7 +73,7 @@ const Navbar = () => {
               <Link
                 href={link.to}
                 key={index}
-                className={`block rounded-lg border-t-[1px] border-solid border-gray-500 px-0 py-4 text-center text-2xl font-medium capitalize tracking-wide transition-all duration-300 ease-in-out dark:text-white lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white ${activeClass}`}
+                className={`block rounded-lg border-t border-solid border-gray-500 px-0 py-4 text-center text-2xl font-medium tracking-wide capitalize transition-all duration-300 ease-in-out lg:mr-4 lg:rounded-lg lg:border-t-0 lg:px-2 lg:py-1 lg:text-lg lg:hover:bg-indigo-500 lg:hover:text-white dark:text-white ${activeClass}`}
                 onClick={() => setShow(false)}
               >
                 {link.text}

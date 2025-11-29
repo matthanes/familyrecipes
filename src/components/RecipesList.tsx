@@ -149,14 +149,20 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipes = [] }) => {
       <section className="recipes-list grid gap-x-4 gap-y-8 pb-12 sm:grid-cols-2 sm:grid-rows-3 xl:grid-cols-3 xl:grid-rows-2">
         {currentRecipes.length > 0 ? (
           currentRecipes.map(recipe => {
-            const { id, title, image, prepTime, cookTime, slug } = recipe
+            const { id, title, image, prepTime, cookTime, slug, source } =
+              recipe
+
+            let displayImage = image
+            if (source === 'directus' && image) {
+              displayImage = `${image}?width=1200&format=webp`
+            }
 
             return (
               <Link href={`/${slug}`} className="block" key={id}>
-                {image && (
+                {displayImage && (
                   <div className="relative h-60 w-full">
                     <Image
-                      src={image}
+                      src={displayImage}
                       alt={title}
                       fill
                       className="rounded-lg object-cover"
@@ -164,10 +170,10 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipes = [] }) => {
                     />
                   </div>
                 )}
-                <h5 className="mb-0 mt-1 font-semibold leading-none text-zinc-700 dark:text-slate-200 xl:text-xl">
+                <h5 className="mt-1 mb-0 leading-none font-semibold text-zinc-700 xl:text-xl dark:text-slate-200">
                   {title}
                 </h5>
-                <p className="mb-0 mt-2 leading-none text-zinc-700 dark:text-slate-200">
+                <p className="mt-2 mb-0 leading-none text-zinc-700 dark:text-slate-200">
                   Prep : {minutesToHours(prepTime)} | Cook Time :{' '}
                   {minutesToHours(cookTime)}
                 </p>

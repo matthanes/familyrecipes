@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BsPieChart } from 'react-icons/bs'
@@ -30,6 +30,11 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
     tools,
     source,
   } = recipe
+
+  let displayImage = image
+  if (source === 'directus' && image) {
+    displayImage = `${image}?width=1200&format=webp`
+  }
 
   // Check if ingredients are structured (Directus) or strings (Contentful)
   const isStructured =
@@ -81,10 +86,10 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe }) => {
   return (
     <>
       <section className="grid gap-12 lg:grid-cols-[4fr_5fr] lg:items-center">
-        {image && (
+        {displayImage && (
           <div className="relative h-96 w-full">
             <Image
-              src={image}
+              src={displayImage}
               alt={title}
               fill
               className="rounded-lg object-cover"
